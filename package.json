@@ -1,0 +1,51 @@
+{
+  "name": "fly-util",
+  "version": "0.0.1",
+  "description": "Utilities for Fly Plugins",
+  "main": "dist/index.js",
+  "dependencies": {
+    "babel-core": "^5.6.15",
+    "babel-runtime": "^5.4.7",
+    "clor": "^1.0.0",
+    "chokidar": "^1.0.3",
+    "glob": "^5.0.10",
+    "interpret": "^0.6.4",
+    "mz": "^2.0.0",
+    "prettyjson": "^1.1.2",
+    "rimraf": "^2.4.0",
+    "update-notifier": "^0.5.0"
+  },
+  "devDependencies": {
+    "babel": "^5.6.14",
+    "babel-eslint": "^3.1.9",
+    "eslint": "^0.21.2",
+    "tap-spec": "^4.0.2",
+    "tape": "^4.0.0"
+  },
+  "scripts": {
+    "lint": "eslint src/",
+    "tape": "tape test/",
+    "test": "npm run lint && npm run tape | tspec",
+    "build": "babel --optional runtime src/ -d ./dist",
+    "setup": "npm i && npm run build && npm run test",
+    "deploy": "npm run test && npm run build && git push origin master && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flyjs/fly-util.git"
+  },
+  "keywords": [
+    "fly",
+    "utilities"
+  ],
+  "author": "Jorge Bucaran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flyjs/fly-util/issues"
+  },
+  "engines": {
+    "node": ">= 0.11.16",
+    "iojs": ">= 1.0.0"
+  },
+  "homepage": "https://github.com/flyjs/fly-util"
+}
