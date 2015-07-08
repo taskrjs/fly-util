@@ -29,9 +29,8 @@ export function trace (e) {
  * @return {Function} function that returns a promise
  */
 export function defer (asyncFunc) {
-  return (...args) => new Promise((resolve, reject) =>
-    asyncFunc.apply(this, args.concat((err, ...args) =>
-      err ? reject(err) : resolve(args))))
+  return (value) => new Promise((resolve, reject) =>
+    asyncFunc(value, (err, value) => err ? reject(err) : resolve(value)))
 }
 
 /**
@@ -49,7 +48,7 @@ export function flatten (array) {
  * @param {Array} blacklisted plugins
  * @return {Array} list of loadable fly deps
  */
-export function searchPlugins ({ pkg, blacklist = []}) {
+export function searchPlugins (pkg, blacklist = []) {
   if (!pkg) return []
   return flatten(["dependencies", "devDependencies", "peerDependencies"]
     .filter((key) => key in pkg)
@@ -132,15 +131,15 @@ export function* findFlypath (path, names = ["Flyfile", "Flypath"]) {
   }
 
   /**
-   * Find the first existing file in paths.
-   * @param {Array:String} list of paths to search
+   * Find the first existing file in files.
+   * @param {Array:String} list of files to search
    * @return {String} path of an existing file
    */
-  function* resolve (paths) {
-    if (paths.length === 0) throw { code: "ENOENT" }
+  function* resolve (files) {
+    if (files.length === 0) throw { code: "ENOENT" }
     try {
-      if (yield fs.stat(paths[0])) return paths[0]
-    } catch (e) { return yield resolve(paths.slice(1)) }
+      if (yield fs.stat(files[0])) return files[0]
+    } catch (e) { return yield resolve(files.slice(1)) }
   }
 
   /**
