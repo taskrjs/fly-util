@@ -77,7 +77,7 @@ Wrapper for [`prettyjson`](https://github.com/rafeca/prettyjson) with color higl
 ```js
 function defer (asyncFunc)
 ```
-+ `asyncFunc {Function}` async function to promisify
++ `asyncFunc {Function}` async function to _promisify_
 + `return` `{Function}` function that returns a promise
 
 Promisify an async function.
@@ -93,7 +93,7 @@ Flatten a nested array recursively.
 
 ### `searchPlugins`
 ```js
-function searchPlugins ({ pkg, blacklist = []})
+function searchPlugins (pkg, blacklist = [])
 ```
 + `pkg {Package}` project's package.json
 + `blacklist {Array}` blacklisted plugins
