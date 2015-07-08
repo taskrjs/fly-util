@@ -70,21 +70,11 @@ function trace(e) {
  */
 
 function defer(asyncFunc) {
-  var _this = this;
-
-  return function () {
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
+  return function (value) {
     return new _Promise(function (resolve, reject) {
-      return asyncFunc.apply(_this, args.concat(function (err) {
-        for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-          args[_key2 - 1] = arguments[_key2];
-        }
-
-        return err ? reject(err) : resolve(args);
-      }));
+      return asyncFunc(value, function (err, value) {
+        return err ? reject(err) : resolve(value);
+      });
     });
   };
 }
@@ -107,10 +97,8 @@ function flatten(array) {
  * @return {Array} list of loadable fly deps
  */
 
-function searchPlugins(_ref) {
-  var pkg = _ref.pkg;
-  var _ref$blacklist = _ref.blacklist;
-  var blacklist = _ref$blacklist === undefined ? [] : _ref$blacklist;
+function searchPlugins(pkg) {
+  var blacklist = arguments[1] === undefined ? [] : arguments[1];
 
   if (!pkg) return [];
   return flatten(["dependencies", "devDependencies", "peerDependencies"].filter(function (key) {
@@ -183,11 +171,11 @@ function findFlypath(path) {
           }) : match([files[0]], exts).concat(match(files.slice(1), exts));
         };
 
-        resolve = function resolve(paths) {
+        resolve = function resolve(files) {
           return _regeneratorRuntime.wrap(function resolve$(context$2$0) {
             while (1) switch (context$2$0.prev = context$2$0.next) {
               case 0:
-                if (!(paths.length === 0)) {
+                if (!(files.length === 0)) {
                   context$2$0.next = 2;
                   break;
                 }
@@ -197,7 +185,7 @@ function findFlypath(path) {
               case 2:
                 context$2$0.prev = 2;
                 context$2$0.next = 5;
-                return _mzFs2["default"].stat(paths[0]);
+                return _mzFs2["default"].stat(files[0]);
 
               case 5:
                 if (!context$2$0.sent) {
@@ -205,7 +193,7 @@ function findFlypath(path) {
                   break;
                 }
 
-                return context$2$0.abrupt("return", paths[0]);
+                return context$2$0.abrupt("return", files[0]);
 
               case 7:
                 context$2$0.next = 14;
@@ -215,7 +203,7 @@ function findFlypath(path) {
                 context$2$0.prev = 9;
                 context$2$0.t0 = context$2$0["catch"](2);
                 context$2$0.next = 13;
-                return resolve(paths.slice(1));
+                return resolve(files.slice(1));
 
               case 13:
                 return context$2$0.abrupt("return", context$2$0.sent);
@@ -291,8 +279,8 @@ function findFlypath(path) {
  */
 
 /**
- * Find the first existing file in paths.
- * @param {Array:String} list of paths to search
+ * Find the first existing file in files.
+ * @param {Array:String} list of files to search
  * @return {String} path of an existing file
  */
 
