@@ -1,6 +1,6 @@
 {
   "name": "fly-util",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Utilities for Fly Plugins",
   "main": "dist/index.js",
   "dependencies": {
@@ -18,17 +18,18 @@
   "devDependencies": {
     "babel": "^5.6.14",
     "babel-eslint": "^3.1.9",
+    "co": "^4.5.4",
     "eslint": "^0.21.2",
     "tap-spec": "^4.0.2",
     "tape": "^4.0.0"
   },
   "scripts": {
-    "lint": "eslint src/",
-    "tape": "tape test/",
-    "test": "npm run lint && npm run tape | tspec",
+    "setup": "npm i && npm run test",
+    "test": "npm run build && npm run lint && npm run harmony-test | tspec",
     "build": "babel --optional runtime src/ -d ./dist",
-    "setup": "npm i && npm run build && npm run test",
-    "deploy": "npm run test && npm run build && git push origin master && npm publish"
+    "lint": "eslint src/",
+    "harmony-test": "node --harmony --harmony_arrow_functions ./node_modules/tape/bin/tape test/*.js",
+    "deploy": "npm run test && git push origin master && npm publish"
   },
   "repository": {
     "type": "git",
