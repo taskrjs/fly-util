@@ -2,13 +2,23 @@ import fs from "mz/fs"
 import clor from "clor"
 import glob from "glob"
 import pretty from "prettyjson"
+import datefmt from "dateformat"
 import chokidar from "chokidar"
 import { join } from "path"
 import { jsVariants } from "interpret"
 import updateNotifier from "update-notifier"
 
-export const log = console.log.bind(console)
-export const error = console.error.bind(console)
+/**
+ * Log/Error a message with a time stamp.
+ */
+export const log = stamp.bind({ method: "log", color: "gray" })
+export const error = stamp.bind({ method: "error", color: "red" })
+
+function stamp (...args) {
+  const date = datefmt(new Date(), "HH:MM:ss")
+  process.stdout.write(`[${clor[this.color](date)}] `)
+  console[this.method](...args)
+}
 
 /**
  * Wrapper for prettyjson and other stack tracing improvements.
