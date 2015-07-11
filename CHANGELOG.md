@@ -6,7 +6,12 @@
 
 # Changelog
 
++ [v2.0.0](#v200)
 + [v1.0.0](#v100)
+
+## v2.0.0
+
++ `util.expand` behavior was simplified as a result of an internal API change in Fly regarding how async processes are handled. This method no longer requires a callback and simply return a promise that resolves to the expanded files from pattern. Basically it's a promisified version of `glob`.
 
 ## v1.0.0
 
