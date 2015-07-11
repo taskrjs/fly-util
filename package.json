@@ -6,8 +6,9 @@
   "dependencies": {
     "babel-core": "^5.6.15",
     "babel-runtime": "^5.4.7",
-    "clor": "^1.0.0",
     "chokidar": "^1.0.3",
+    "clor": "^1.0.0",
+    "dateformat": "^1.0.11",
     "glob": "^5.0.10",
     "interpret": "^0.6.4",
     "mz": "^2.0.0",
