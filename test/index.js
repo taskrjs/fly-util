@@ -112,13 +112,10 @@ test("util.searchPlugins ({ pkg, blacklist = []})", function (t) {
   t.end()
 })
 
-// util.expand runs `handler` for each of the expanded globs and return
-// a promise. this promise resolves to the result of all the handlers
-// via Promise.all since it's possible that `handler` return a new
-// promise based in the received files/paths
-test("util.expand (pattern, handler)", function (t) {
+
+test("util.expand (pattern, options)", function (t) {
   const expected = ["a.js", "b.js", "index.js", "Flyfile.js", "Flypath.js"]
-  util.expand("./test/**/*.js", (_) => _).then((files) => {
+  util.expand("./test/**/*.js").then((files) => {
     files.map((file) => path.basename(file)).forEach((file) => {
       t.ok(!!~expected.indexOf(file), "expands and handles globs:" + file)
     })
@@ -127,7 +124,6 @@ test("util.expand (pattern, handler)", function (t) {
     t.ok(false, e)
   })
 })
-
 
 test("*findFlypath (path, names)", function (t) {
   go(function* () {

@@ -58,19 +58,16 @@ export function searchPlugins (pkg, blacklist = []) {
 }
 
 /**
- * Expand a glob pattern and runs a handler for each expanded glob.
+ * Return a promise that resolves to the expanded files from pattern.
  * @param pattern {String} Pattern to be matched
  * @param handler {Function} Function to run for each unwrapped glob promise.
  * @return {Promise}
  */
-export function expand (pattern, handler) {
-  return new Promise((resolve, reject) => {
-    glob(pattern, {}, (error, files) =>
-      error
-        ? reject(error)
-        : Promise.all(handler(files))
-          .then((files) => resolve(files))
-          .catch((error) => { throw error }))
+export function expand (pattern, options) {
+  return new Promise(function (resolve, reject) {
+    glob(pattern, options, function (er, files) {
+      return er ? reject(er) : resolve(files)
+    })
   })
 }
 
