@@ -1,7 +1,7 @@
 > Utilities for Fly Plugins
 
 [![][fly-badge]][fly]
-[![npm package][npm-ver-link]][fly]
+[![npm package][npm-ver-link]][fly-util]
 [![][dl-badge]][npm-pkg-link]
 [![][TravisLogo]][Travis]
 ![][mit-badge]
@@ -166,6 +166,7 @@ every possible JavaScript variant if file is a directory.
 [author]: http://about.bucaran.me
 
 [fly]: https://www.github.com/flyjs/fly
+[fly-util]: https://www.github.com/flyjs/fly-util
 
 [fly-badge]: https://img.shields.io/badge/fly-JS-05B3E1.svg?style=flat-square
 [mit-badge]: https://img.shields.io/badge/license-MIT-444444.svg?style=flat-square
