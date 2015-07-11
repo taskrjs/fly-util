@@ -113,20 +113,16 @@ function searchPlugins(pkg) {
 }
 
 /**
- * Expand a glob pattern and runs a handler for each expanded glob.
+ * Return a promise that resolves to the expanded files from pattern.
  * @param pattern {String} Pattern to be matched
  * @param handler {Function} Function to run for each unwrapped glob promise.
  * @return {Promise}
  */
 
-function expand(pattern, handler) {
+function expand(pattern, options) {
   return new _Promise(function (resolve, reject) {
-    (0, _glob2["default"])(pattern, {}, function (error, files) {
-      return error ? reject(error) : _Promise.all(handler(files)).then(function (files) {
-        return resolve(files);
-      })["catch"](function (error) {
-        throw error;
-      });
+    (0, _glob2["default"])(pattern, options, function (er, files) {
+      return er ? reject(er) : resolve(files);
     });
   });
 }
