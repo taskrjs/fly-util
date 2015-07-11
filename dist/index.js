@@ -37,6 +37,10 @@ var _prettyjson = require("prettyjson");
 
 var _prettyjson2 = _interopRequireDefault(_prettyjson);
 
+var _dateformat = require("dateformat");
+
+var _dateformat2 = _interopRequireDefault(_dateformat);
+
 var _chokidar = require("chokidar");
 
 var _chokidar2 = _interopRequireDefault(_chokidar);
@@ -49,11 +53,20 @@ var _updateNotifier = require("update-notifier");
 
 var _updateNotifier2 = _interopRequireDefault(_updateNotifier);
 
-var log = console.log.bind(console);
+/**
+ * Log/Error a message with a time stamp.
+ */
+var log = stamp.bind({ method: "log", color: "gray" });
 exports.log = log;
-var error = console.error.bind(console);
+var error = stamp.bind({ method: "error", color: "red" });
 
 exports.error = error;
+function stamp() {
+  var date = (0, _dateformat2["default"])(new Date(), "HH:MM:ss");
+  process.stdout.write("[" + _clor2["default"][this.color](date) + "] ");
+  console[this.method].apply(console, arguments);
+}
+
 /**
  * Wrapper for prettyjson and other stack tracing improvements.
  * @param {Object} error object
