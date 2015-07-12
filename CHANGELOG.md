@@ -6,8 +6,13 @@
 
 # Changelog
 
++ [v3.0.0](#v300)
 + [v2.0.0](#v200)
 + [v1.0.0](#v100)
+
+## v3.0.0
+
++ `log` and `error` print a time stamp. 
 
 ## v2.0.0
 
