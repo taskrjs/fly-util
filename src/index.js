@@ -39,8 +39,10 @@ export function trace (e) {
  * @return {Function} function that returns a promise
  */
 export function defer (asyncFunc) {
-  return (value) => new Promise((resolve, reject) =>
-    asyncFunc(value, (err, value) => err ? reject(err) : resolve(value)))
+  return (value, options) => new Promise((resolve, reject) => {
+    const cb = (err, value) => err ? reject(err) : resolve(value)
+    asyncFunc(value, options || cb, options && cb)
+  })
 }
 
 /**

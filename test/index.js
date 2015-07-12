@@ -21,6 +21,12 @@ function asyncFunc (value, handler) {
   }, 100)
 }
 
+function asyncFuncWithOptions (value, options, handler) {
+  setTimeout(function () {
+    handler(undefined, value)
+  }, options.time)
+}
+
 
 test("Fly utilities test", function (t) {
   t.ok(util !== undefined, "it's real")
@@ -39,6 +45,15 @@ test("util.defer (asyncFunc)", function (t) {
     .defer(asyncFunc)(42)
     .then(function (value) {
       t.equal(value, 42, "promisifies an async func")
+      t.end()
+    })
+})
+
+test("util.defer (asyncFunc /w options)", function (t) {
+  util
+    .defer(asyncFuncWithOptions)(1985, { time: 100 })
+    .then(function (value) {
+      t.equal(value, 1985, "promisifies an async func w/ options")
       t.end()
     })
 })
