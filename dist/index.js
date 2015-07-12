@@ -83,11 +83,12 @@ function trace(e) {
  */
 
 function defer(asyncFunc) {
-  return function (value) {
+  return function (value, options) {
     return new _Promise(function (resolve, reject) {
-      return asyncFunc(value, function (err, value) {
+      var cb = function cb(err, value) {
         return err ? reject(err) : resolve(value);
-      });
+      };
+      asyncFunc(value, options || cb, options && cb);
     });
   };
 }
