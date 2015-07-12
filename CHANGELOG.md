@@ -6,13 +6,18 @@
 
 # Changelog
 
++ [v3.1.0](#v310)
 + [v3.0.0](#v300)
 + [v2.0.0](#v200)
 + [v1.0.0](#v100)
 
+## v3.1.0
+
++ Support async transformers taking and optional `options` object.
+
 ## v3.0.0
 
-+ `log` and `error` print a time stamp. 
++ `log` and `error` print a time stamp.
 
 ## v2.0.0
 
