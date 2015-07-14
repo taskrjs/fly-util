@@ -54,19 +54,15 @@ var _updateNotifier = require("update-notifier");
 var _updateNotifier2 = _interopRequireDefault(_updateNotifier);
 
 /**
- * Log/Error a message with a time stamp.
+ * Log utilities.
  */
 var log = stamp.bind({ method: "log", color: "gray" });
 exports.log = log;
 var error = stamp.bind({ method: "error", color: "red" });
-
 exports.error = error;
-function stamp() {
-  var date = (0, _dateformat2["default"])(new Date(), "HH:MM:ss");
-  process.stdout.write("[" + _clor2["default"][this.color](date) + "] ");
-  console[this.method].apply(console, arguments);
-}
+var debug = process.env.DEVELOPMENT ? stamp.bind({ method: "log", color: "magenta" }) : function () {};
 
+exports.debug = debug;
 /**
  * Wrapper for prettyjson and other stack tracing improvements.
  * @param {Object} error object
@@ -278,6 +274,15 @@ function findFlypath(path) {
         return context$1$0.stop();
     }
   }, marked0$0[0], this);
+}
+
+/**
+ * Display a message with a date stamp.
+ */
+function stamp() {
+  var date = (0, _dateformat2["default"])(new Date(), "HH:MM:ss");
+  process.stdout.write("[" + _clor2["default"][this.color](date) + "] ");
+  console[this.method].apply(console, arguments);
 }
 
 /**

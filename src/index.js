@@ -9,16 +9,12 @@ import { jsVariants } from "interpret"
 import updateNotifier from "update-notifier"
 
 /**
- * Log/Error a message with a time stamp.
+ * Log utilities.
  */
 export const log = stamp.bind({ method: "log", color: "gray" })
 export const error = stamp.bind({ method: "error", color: "red" })
-
-function stamp (...args) {
-  const date = datefmt(new Date(), "HH:MM:ss")
-  process.stdout.write(`[${clor[this.color](date)}] `)
-  console[this.method](...args)
-}
+export const debug = process.env.DEVELOPMENT
+  ? stamp.bind({ method: "log", color: "magenta" }) : () => {}
 
 /**
  * Wrapper for prettyjson and other stack tracing improvements.
@@ -162,4 +158,13 @@ export function* findFlypath (path, names = ["Flyfile", "Flypath"]) {
       ? exts.map((ext) => `${files[0]}${ext}`)
       : match([files[0]], exts).concat(match(files.slice(1), exts))
   }
+}
+
+/**
+ * Display a message with a date stamp.
+ */
+function stamp (...args) {
+  const date = datefmt(new Date(), "HH:MM:ss")
+  process.stdout.write(`[${clor[this.color](date)}] `)
+  console[this.method](...args)
 }
