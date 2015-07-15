@@ -27,7 +27,6 @@ function asyncFuncWithOptions (value, options, handler) {
   }, options.time)
 }
 
-
 test("Fly utilities test", function (t) {
   t.ok(util !== undefined, "it's real")
   t.ok(defined(instances(util)), "exports are all defined")
@@ -64,7 +63,7 @@ test("util.flatten (array)", function (t) {
   t.end()
 })
 
-test("util.searchPlugins ({ pkg, blacklist = []})", function (t) {
+test("util.findPlugins ({ pkg, blacklist = []})", function (t) {
   const pkgs = [
     {
       msg: "reads fly-* deps",
@@ -119,10 +118,10 @@ test("util.searchPlugins ({ pkg, blacklist = []})", function (t) {
     },
   ]
 
-  t.deepEqual(util.searchPlugins(undefined), [], "return [] for undefined pkg")
-  t.deepEqual(util.searchPlugins({}), [], "return [] for empty pkg")
+  t.deepEqual(util.findPlugins(undefined), [], "return [] for undefined pkg")
+  t.deepEqual(util.findPlugins({}), [], "return [] for empty pkg")
   pkgs.forEach((pkg) => {
-    t.deepEqual(util.searchPlugins(pkg, pkg.blacklist), pkg.expected, pkg.msg)
+    t.deepEqual(util.findPlugins(pkg, pkg.blacklist), pkg.expected, pkg.msg)
   })
   t.end()
 })

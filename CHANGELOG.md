@@ -6,11 +6,28 @@
 
 # Changelog
 
++ [v3.3.0](#v330)
 + [v3.2.0](#v320)
 + [v3.1.0](#v310)
 + [v3.0.0](#v300)
 + [v2.0.0](#v200)
 + [v1.0.0](#v100)
+
+## v3.3.0
+
++ Bugfix: Logging functions should should return `this` after completion.
+
++ Refactor: Separate utilities into sub modules, improve comments.
+
++ Refactor: Change `searchPlugins` to `findPlugins`.
+
++ New: Now you can use the `DEBUG` instead of `DEVELOPMENT` for the same result.
+
++ New: `debug` function to display the first argument in magenta.
+
++ New: `warn` logging function.
+
++ New: `SILENT` env check to supress `warn` output.
 
 ## v3.2.0
 
