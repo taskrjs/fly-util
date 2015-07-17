@@ -21,9 +21,9 @@ var _path = require("path");
 var _interpret = require("interpret");
 
 /**
- * Find a Flyfile given a path. If path is a directory find the
- * first Flyfile by extension. Flyfiles can be written in any
- * language supported in interpret/jsVariants.
+ * Find a Flyfile in path. If path is a directory find the first Flyfile
+ * by extension. Flyfiles can be written in any language supported in
+ * interpret/jsVariants.
  * @param {String} file or path to the Flyfile
  * @param {[String]} list of alternative Flyfile names
  * @return {String} path to the Flyfile
