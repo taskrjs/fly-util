@@ -116,8 +116,18 @@ test("util.findPlugins ({ pkg, blacklist = []})", function (t) {
       dependencies: {},
       devDependencies: {}
     },
+    {
+      msg: "skip fly-util by default",
+      expected: ["fly-utl", "fly-til", "fly-uti"],
+      dependencies: {
+        "fly-utl": "0.0.0",
+        "fly-til": "0.0.0",
+        "fly-uti": "0.0.0",
+        "fly-util": "0.0.0"
+      },
+      devDependencies: {}
+    },
   ]
-
   t.deepEqual(util.findPlugins(undefined), [], "return [] for undefined pkg")
   t.deepEqual(util.findPlugins({}), [], "return [] for empty pkg")
   pkgs.forEach((pkg) => {

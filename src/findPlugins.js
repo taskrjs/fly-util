@@ -11,5 +11,6 @@ export function findPlugins (pkg, blacklist = []) {
     .filter((key) => key in pkg)
     .map((dep) => Object.keys(pkg[dep])))
     .filter((dep) => /^fly-.+/g.test(dep))
-    .filter((dep) => !~blacklist.indexOf(dep))
+    .filter((dep) => !~["fly-util"]
+      .concat(blacklist).indexOf(dep))
 }
