@@ -6,6 +6,7 @@
 
 # Changelog
 
++ [v3.4.1](#v341)
 + [v3.4.0](#v340)
 + [v3.3.0](#v330)
 + [v3.2.0](#v320)
@@ -13,6 +14,14 @@
 + [v3.0.0](#v300)
 + [v2.0.0](#v200)
 + [v1.0.0](#v100)
+
+## v3.4.1
+
++ Update with new logo.
+
+  <a href="http://github.com/flyjs/fly">
+    <img width=100px  src="https://cloud.githubusercontent.com/assets/8317250/8733685/0be81080-2c40-11e5-98d2-c634f076ccd7.png">
+  </a>
 
 ## v3.4.0
 
