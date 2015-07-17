@@ -6,12 +6,17 @@
 
 # Changelog
 
++ [v3.4.0](#v340)
 + [v3.3.0](#v330)
 + [v3.2.0](#v320)
 + [v3.1.0](#v310)
 + [v3.0.0](#v300)
 + [v2.0.0](#v200)
 + [v1.0.0](#v100)
+
+## v3.4.0
+
++ Bugfix: `findPlugins` now correctly skips `fly-util`, itself by default.
 
 ## v3.3.0
 
