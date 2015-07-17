@@ -27,6 +27,6 @@ function findPlugins(pkg) {
   })).filter(function (dep) {
     return /^fly-.+/g.test(dep);
   }).filter(function (dep) {
-    return ! ~blacklist.indexOf(dep);
+    return ! ~["fly-util"].concat(blacklist).indexOf(dep);
   });
 }
