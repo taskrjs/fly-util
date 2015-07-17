@@ -1,6 +1,6 @@
 import chokidar from "chokidar"
 /**
- * Simple chokidar.watch wrapper.
+ * chokidar.watch wrapper.
  * @param {Array:String} globs to watch
  * @param {Object} chokidar options
  * @return {chokidar.FSWatcher}

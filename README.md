@@ -53,36 +53,48 @@ const util = require("fly-util")
 
 ## API
 
-### `log`
+## `log`
 ```js
 function log (...args)
 ```
 Wrapper for `Console.log`.
 
-### `error`
+## `error`
 ```js
 function error (...args)
 ```
 Wrapper for `Console.error`.
 
-### `trace`
+## `warn`
+```js
+function warn (...args)
+```
+Wrapper for `Console.log` in a distinctive color. Output is suppressed if `process.env.SILENT` is truthy.
+
+## `debug`
+```js
+function debug (...args)
+```
+Wrapper for `Console.log` in a distinctive color. Output is displayed only if `process.env.DEBUG` is truthy.
+
+## `trace`
  ```js
 function trace (e)
 ```
 + `e {Object}` error object
 
-Wrapper for [`prettyjson`](https://github.com/rafeca/prettyjson) with color higlighting.
+Wrapper for [`prettyjson`](https://github.com/rafeca/prettyjson).
 
-### `defer`
+## `defer`
 ```js
 function defer (asyncFunc)
 ```
-+ `asyncFunc {Function}` async function to _promisify_
-+ `return` `{Function}` function that returns a promise
++ `asyncFunc {Function}` async function of the form (value, options, cb)
++ `return` `{Function}` new function that returns a promise
 
-Promisify an async function.
+Promisify a function with a callback.
 
-### `flatten`
+## `flatten`
 ```js
 function flatten (array)
 ```
@@ -91,58 +103,56 @@ function flatten (array)
 
 Flatten a nested array recursively.
 
-### `searchPlugins`
+## `searchPlugins`
 ```js
-function searchPlugins (pkg, blacklist = [])
+function findPlugins (pkg, blacklist = [])
 ```
 + `pkg {Package}` project's package.json
 + `blacklist {Array}` blacklisted plugins
-+ `return {Array}` list of loadable fly dependencies
++ `return {Array}` list of fly dependencies that can be loaded
 
-Search `fly-*` plugins listed in package.json dependencies.
+Find `fly-*` plugins listed in package.json dependencies.
 
-### `expand`
+## `expand`
 ```js
-function expand (pattern, handler)
+function expand (pattern, options)
 ```
-+ `pattern {String}` Pattern to be matched
-+ `handler {Function}` Function to run for each unwrapped glob promise.
++ `pattern {String}` Pattern to match
++ `handler {Object}` [options](https://github.com/isaacs/node-glob#options) to glob
 + `return {Promise}`
 
-Expand a glob pattern and runs a handler for each expanded glob.
+Promisified [glob](https://github.com/isaacs/node-glob) wrapper.
 
-### `watch`
+## `watch`
 ```js
 function watch (globs, options)
 ```
 + `globs {Array:String}` globs to watch
-+ `options {Object}` chokidar options
++ `options {Object}` chokidar [options](https://github.com/paulmillr/chokidar#api)
 + `return {chokidar.FSWatcher}`
 
-Wrapper for chokidar.watch. Array of globs are flattened.
+Wrapper for [chokidar.watch](https://github.com/paulmillr/chokidar).
 
-### `notifyUpdates`
+## `notifyUpdates`
 ```js
 function notifyUpdates (options)
 ```
 + `options {Array}` options
 
-Wrap update-notifier notify.
+Wrapper for [update-notifier](https://github.com/yeoman/update-notifier).
 
-
-### `findFlypath`
+## `findFlypath`
 ```js
-function* findFlypath (path, names)
+function* findPath (path, names)
 ```
 + `path {String}` file or path to the Flyfile
-+ `names {String:Array}` Flyfile variant name. By default Flyfile and Flypath (as well as lowercase variants)
++ `names {[String]}` Optional. list of alternative Flyfile names
 + `return {String}` path to the Flyfile
 
-Resolve the Flyfile path. Check the file extension and attempt to load
-every possible JavaScript variant if file is a directory.
+Find a Flyfile in the given path. If `path` is a directory find the first Flyfile by extension. Flyfiles can be written in any language supported in [interpret/jsVariants](https://github.com/tkellen/js-interpret).
 
 
-### Dependencies
+## Dependencies
 
 + [`mz/fs`](https://github.com/normalize/mz) promise wrapped basic IO handling
 
