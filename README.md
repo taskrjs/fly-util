@@ -3,13 +3,13 @@
 [![][fly-badge]][fly]
 [![npm package][npm-ver-link]][fly-util]
 [![][dl-badge]][npm-pkg-link]
-[![][TravisLogo]][Travis]
+[![][travis-logo]][travis]
 ![][mit-badge]
 
 
 <p align="center">
   <a href="http://github.com/flyjs/fly-util">
-    <img width=180px  src="https://cloud.githubusercontent.com/assets/8317250/8430194/35c6043a-1f6a-11e5-8cbd-af6cc86baa84.png">
+    <img width=180px  src="https://cloud.githubusercontent.com/assets/8317250/8733685/0be81080-2c40-11e5-98d2-c634f076ccd7.png">
   </a>
 </p>
 
@@ -160,22 +160,17 @@ every possible JavaScript variant if file is a directory.
 
 # License
 
-[MIT](http://opensource.org/licenses/MIT) © [Jorge Bucaran][Author] et [al](https://github.com/flyjs/fly-util/graphs/contributors)
+[MIT](http://opensource.org/licenses/MIT) © [Jorge Bucaran][Author] et [al][contributors]
 :heart:
 
 [author]: http://about.bucaran.me
-
+[contributors]: https://github.com/flyjs/fly-util/graphs/contributors
 [fly]: https://www.github.com/flyjs/fly
 [fly-util]: https://www.github.com/flyjs/fly-util
-
 [fly-badge]: https://img.shields.io/badge/fly-JS-05B3E1.svg?style=flat-square
 [mit-badge]: https://img.shields.io/badge/license-MIT-444444.svg?style=flat-square
-
 [npm-pkg-link]: https://www.npmjs.org/package/fly-util
-
 [npm-ver-link]: https://img.shields.io/npm/v/fly-util.svg?style=flat-square
-
 [dl-badge]: http://img.shields.io/npm/dm/fly-util.svg?style=flat-square
-
-[TravisLogo]: http://img.shields.io/travis/flyjs/fly-util.svg?style=flat-square
-[Travis]: https://travis-ci.org/flyjs/fly-util
+[travis-logo]: http://img.shields.io/travis/flyjs/fly-util.svg?style=flat-square
+[travis]: https://travis-ci.org/flyjs/fly-util
