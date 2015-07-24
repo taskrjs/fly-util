@@ -38,6 +38,12 @@ _defaults(exports, _interopRequireWildcard(_notifyUpdates));
 
 var _logging = require("./logging");
 
+Object.defineProperty(exports, "stamp", {
+  enumerable: true,
+  get: function get() {
+    return _logging.stamp;
+  }
+});
 Object.defineProperty(exports, "log", {
   enumerable: true,
   get: function get() {
