@@ -1,4 +1,4 @@
-> Utilities for Fly Plugins
+> Fly Utility Toolbox
 
 [![][fly-badge]][fly]
 [![npm package][npm-ver-link]][fly-util]
@@ -27,10 +27,7 @@
 
 ## About
 
-[_Fly_][fly] is a modern [build system](https://en.wikipedia.org/wiki/Build_automation) for [Node](https://nodejs.org/) based in [_co_-routines](https://medium.com/@tjholowaychuk/callbacks-vs-coroutines-174f1fe66127), [generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*) and [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
-
-This repository contains the `fly-util` package with utilities you can use in your own _Fly_ [plugins](/docs/README.md#plugins).
-
+> [_Fly_][fly] is a modern [build system](https://en.wikipedia.org/wiki/Build_automation) for [Node](https://nodejs.org/) based in [_co_-routines](https://medium.com/@tjholowaychuk/callbacks-vs-coroutines-174f1fe66127), [generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*) and [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 ## Install
 
@@ -39,9 +36,6 @@ npm install fly-util
 ```
 
 ## Usage
-
-> Not all _Fly_ plugins use these utilities. For plugins that do, see [this list](https://github.com/flyjs/fly-util/wiki/Plugins-Using-Utilities).
-
 
 ```js
 import util from "fly-util"
