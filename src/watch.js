@@ -5,6 +5,6 @@ import chokidar from "chokidar"
  * @param {Object} chokidar options
  * @return {chokidar.FSWatcher}
  */
-export default function (globs, options) {
+export function watch (globs, options) {
   return chokidar.watch(globs, options)
 }

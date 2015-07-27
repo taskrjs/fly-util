@@ -9,8 +9,8 @@ exports.log = log;
 exports.error = error;
 exports.warn = warn;
 exports.debug = debug;
-exports.trace = trace;
 exports.stamp = stamp;
+exports.trace = trace;
 
 var _clor = require("clor");
 
@@ -25,8 +25,8 @@ var _prettyjson = require("prettyjson");
 var _prettyjson2 = _interopRequireDefault(_prettyjson);
 
 /**
- * Log utilities.
- */
+* Log utilities.
+*/
 
 function log() {
   for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
@@ -71,21 +71,12 @@ function debug() {
 }
 
 /**
- * prettyjson wrapper and improved stack tracer
- * @param {Object} error object
- */
-
-function trace(e) {
-  console.error(_prettyjson2["default"].render(e).replace(/(\sFunction|\sObject)\./g, _clor2["default"].blue("$1") + ".").replace(/\((~?\/.*)\)/g, "(" + _clor2["default"].gray("$1") + ")").replace(/:([0-9]*):([0-9]*)/g, " " + _clor2["default"].yellow("$1") + ":" + _clor2["default"].yellow("$2")).replace(new RegExp(process.env.HOME, "g"), "~"));
-}
-
-/**
- * Apply args to console[method] with a date stamp. Bind `this`
- * to an object with the the following options:
- * @prop {Color String} date stamp color
- * @prop {String} console method to use
- * @prop {[String]} custom style to append to args
- */
+* Apply args to console[method] and add a date stamp.
+* Bind `this` to an object with the following options
+* @prop {Color String} date stamp color
+* @prop {String} console method to use
+* @prop {[String]} custom style to append to args
+*/
 
 function stamp() {
   var date = (0, _dateformat2["default"])(new Date(), "HH:MM:ss");
@@ -96,4 +87,13 @@ function stamp() {
   }
 
   console[this.method].apply(console, this.custom ? [this.custom].concat(args) : args);
+}
+
+/**
+* prettyjson wrapper and stack tracer.
+* @param {Object} error object
+*/
+
+function trace(e) {
+  console.error(_prettyjson2["default"].render(e).replace(/(\sFunction|\sObject)\./g, _clor2["default"].blue("$1") + ".").replace(/\((~?\/.*)\)/g, "(" + _clor2["default"].gray("$1") + ")").replace(/:([0-9]*):([0-9]*)/g, " " + _clor2["default"].yellow("$1") + ":" + _clor2["default"].yellow("$2")).replace(new RegExp(process.env.HOME, "g"), "~"));
 }

@@ -6,6 +6,7 @@
 
 # Changelog
 
++ [v3.5.0](#v350)
 + [v3.4.3](#v343)
 + [v3.4.2](#v342)
 + [v3.4.1](#v341)
@@ -16,6 +17,10 @@
 + [v3.0.0](#v300)
 + [v2.0.0](#v200)
 + [v1.0.0](#v100)
+
+## v3.5.0
+
++ Bugfix: chokidar `watch` wrapper is now correctly exported and the test suite correctly tests all required exports are defined.
 
 ## v3.4.3
 

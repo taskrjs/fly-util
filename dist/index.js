@@ -38,33 +38,4 @@ _defaults(exports, _interopRequireWildcard(_notifyUpdates));
 
 var _logging = require("./logging");
 
-Object.defineProperty(exports, "log", {
-  enumerable: true,
-  get: function get() {
-    return _logging.log;
-  }
-});
-Object.defineProperty(exports, "warn", {
-  enumerable: true,
-  get: function get() {
-    return _logging.warn;
-  }
-});
-Object.defineProperty(exports, "error", {
-  enumerable: true,
-  get: function get() {
-    return _logging.error;
-  }
-});
-Object.defineProperty(exports, "debug", {
-  enumerable: true,
-  get: function get() {
-    return _logging.debug;
-  }
-});
-Object.defineProperty(exports, "trace", {
-  enumerable: true,
-  get: function get() {
-    return _logging.trace;
-  }
-});
+_defaults(exports, _interopRequireWildcard(_logging));

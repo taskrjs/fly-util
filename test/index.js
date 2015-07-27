@@ -11,8 +11,8 @@ function defined (values) {
       : false
 }
 
-function instances (object) {
-  return Object.keys(object).map(function (key) { return object[key] })
+function instances (object, values) {
+  return values.map(function (key) { return object[key] })
 }
 
 function asyncFunc (value, handler) {
@@ -29,7 +29,12 @@ function asyncFuncWithOptions (value, options, handler) {
 
 test("Fly utilities test", function (t) {
   t.ok(util !== undefined, "it's real")
-  t.ok(defined(instances(util)), "exports are all defined")
+
+  const EXPORTS = [
+    "defer", "expand", "findPath", "findPlugins", "flatten",
+    "notifyUpdates", "watch", "log", "debug", "warn", "stamp", "trace"]
+
+  t.ok(defined(instances(util, EXPORTS)), "[" + EXPORTS + "] are all defined")
   t.end()
 })
 

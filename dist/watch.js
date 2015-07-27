@@ -5,6 +5,7 @@ var _interopRequireDefault = require("babel-runtime/helpers/interop-require-defa
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.watch = watch;
 
 var _chokidar = require("chokidar");
 
@@ -17,8 +18,6 @@ var _chokidar2 = _interopRequireDefault(_chokidar);
  * @return {chokidar.FSWatcher}
  */
 
-exports["default"] = function (globs, options) {
+function watch(globs, options) {
   return _chokidar2["default"].watch(globs, options);
-};
-
-module.exports = exports["default"];
+}
