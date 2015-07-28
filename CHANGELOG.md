@@ -6,6 +6,7 @@
 
 # Changelog
 
++ [v3.6.0](#v360)
 + [v3.5.0](#v350)
 + [v3.4.3](#v343)
 + [v3.4.2](#v342)
@@ -17,6 +18,20 @@
 + [v3.0.0](#v300)
 + [v2.0.0](#v200)
 + [v1.0.0](#v100)
+
+## v3.6.0
+
++ Change: `findPlugins` renamed to `loadPlugins` and added support for plugins written in ES6/7 by default. There is currently no way to opt out, but this may evolve to allow users to avoid this behavior.
+
++ Maybe: Support for plugins written in other languages, CoffeeScript, EarlGrey, etc., is planned.
+
++ Add: `hook` function to simplify creating the `require` hook.
+
++ Change: Simplify `findPath` to 20 LOC. Now, `findPath` does not create a `require` hook, but simply resolves the path to the Flyfile.
+
++ Change: Dropped support for Flyfiles named `Flypath` or `flypath`. Only, `Flyfile.[extension]` or `flyfile.[extension]`
+
++ Change: Drop "official" support for node 0.11 in `fly-util` for hacker use. Try 0.12 or iojs if you are _developing_ `fly-util`.
 
 ## v3.5.0
 
