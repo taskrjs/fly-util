@@ -97,15 +97,19 @@ function flatten (array)
 
 Flatten a nested array recursively.
 
-## `searchPlugins`
+## `loadPlugins`
 ```js
-function findPlugins (pkg, blacklist = [])
+function loadPlugins (pkg, load, blacklist = [], hook = true)
 ```
 + `pkg {Package}` project's package.json
++ `load {Function}` load handler
 + `blacklist {Array}` blacklisted plugins
++ `hook {Boolean}` require hook
 + `return {Array}` list of fly dependencies that can be loaded
 
-Find `fly-*` plugins listed in package.json dependencies.
+Find `fly-*` plugins listed in a package dependencies.
+
+Bind `require` to compile plugins on the _fly_ automatically.
 
 ## `expand`
 ```js
@@ -135,7 +139,7 @@ function notifyUpdates (options)
 
 Wrapper for [update-notifier](https://github.com/yeoman/update-notifier).
 
-## `findFlypath`
+## `findPath`
 ```js
 function* findPath (path, names)
 ```
@@ -143,8 +147,19 @@ function* findPath (path, names)
 + `names {[String]}` Optional. list of alternative Flyfile names
 + `return {String}` path to the Flyfile
 
-Find a Flyfile in the given path. If `path` is a directory find the first Flyfile by extension. Flyfiles can be written in any language supported in [interpret/jsVariants](https://github.com/tkellen/js-interpret).
+Find a valid Flyfile from a given path. If `path` is a directory find the first Flyfile with a [supported](https://github.com/tkellen/js-interpret) extension.
 
+## `hook`
+```js
+function hook (path, names)
+```
+
++ `path {String}` file or path to the Flyfile
++ `return {String}` path to the Flyfile
+
+Bind to node's require based in the file extension of your Flyfile.
+
+> Support ES6/7 by default, but Flyfiles can be written in any language supported in [interpret](https://github.com/tkellen/js-interpret).
 
 ## Dependencies
 
