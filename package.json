@@ -20,6 +20,7 @@
     "babel": "^5.6.14",
     "babel-eslint": "^3.1.9",
     "co": "^4.5.4",
+    "coffee-script": "^1.9.3",
     "eslint": "^0.21.2",
     "tap-spec": "^4.0.2",
     "tape": "^4.0.0"
@@ -46,8 +47,8 @@
     "url": "https://github.com/flyjs/fly-util/issues"
   },
   "engines": {
-    "node": ">= 0.11.16",
-    "iojs": ">= 1.0.0"
+    "iojs": ">= 1.0.0",
+    "node": ">= 0.12.0"
   },
   "homepage": "https://github.com/flyjs/fly-util"
 }
