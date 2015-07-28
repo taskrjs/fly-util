@@ -2,6 +2,8 @@
 
 var _regeneratorRuntime = require("babel-runtime/regenerator")["default"];
 
+var _getIterator = require("babel-runtime/core-js/get-iterator")["default"];
+
 var _Object$keys = require("babel-runtime/core-js/object/keys")["default"];
 
 var _interopRequireDefault = require("babel-runtime/helpers/interop-require-default")["default"];
@@ -10,7 +12,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.findPath = findPath;
-var marked0$0 = [findPath, resolve].map(_regeneratorRuntime.mark);
+var marked0$0 = [findPath].map(_regeneratorRuntime.mark);
 
 var _mzFs = require("mz/fs");
 
@@ -21,138 +23,214 @@ var _path = require("path");
 var _interpret = require("interpret");
 
 /**
- * Find a Flyfile in path. If path is a directory find the first Flyfile
- * by extension. Flyfiles can be written in any language supported in
- * interpret/jsVariants.
- * @param {String} file or path to the Flyfile
- * @param {[String]} list of alternative Flyfile names
- * @return {String} path to the Flyfile
- */
+  Resolve a valid Flyfile from a path.
+  See tkellen/js-interpret for supported extensions.
+  @param {String} file or path to the Flyfile
+  @return {String} path to the Flyfile
+*/
 
 function findPath(path) {
-  var names = arguments[1] === undefined ? ["Flyfile", "Flypath"] : arguments[1];
-  var root;
+  var marked1$0, root, resolve;
   return _regeneratorRuntime.wrap(function findPath$(context$1$0) {
     while (1) switch (context$1$0.prev = context$1$0.next) {
       case 0:
+        resolve = function resolve(root) {
+          var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, file;
+
+          return _regeneratorRuntime.wrap(function resolve$(context$2$0) {
+            while (1) switch (context$2$0.prev = context$2$0.next) {
+              case 0:
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                context$2$0.prev = 3;
+                _iterator = _getIterator(_regeneratorRuntime.mark(function callee$2$0() {
+                  var _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, ext, _arr, _i, _name;
+
+                  return _regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
+                    while (1) switch (context$3$0.prev = context$3$0.next) {
+                      case 0:
+                        _iteratorNormalCompletion2 = true;
+                        _didIteratorError2 = false;
+                        _iteratorError2 = undefined;
+                        context$3$0.prev = 3;
+                        _iterator2 = _getIterator(_Object$keys(_interpret.jsVariants));
+
+                      case 5:
+                        if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+                          context$3$0.next = 19;
+                          break;
+                        }
+
+                        ext = _step2.value;
+                        _arr = ["Flyfile", "flyfile"];
+                        _i = 0;
+
+                      case 9:
+                        if (!(_i < _arr.length)) {
+                          context$3$0.next = 16;
+                          break;
+                        }
+
+                        _name = _arr[_i];
+                        context$3$0.next = 13;
+                        return (0, _path.join)(root, "" + _name + ext);
+
+                      case 13:
+                        _i++;
+                        context$3$0.next = 9;
+                        break;
+
+                      case 16:
+                        _iteratorNormalCompletion2 = true;
+                        context$3$0.next = 5;
+                        break;
+
+                      case 19:
+                        context$3$0.next = 25;
+                        break;
+
+                      case 21:
+                        context$3$0.prev = 21;
+                        context$3$0.t0 = context$3$0["catch"](3);
+                        _didIteratorError2 = true;
+                        _iteratorError2 = context$3$0.t0;
+
+                      case 25:
+                        context$3$0.prev = 25;
+                        context$3$0.prev = 26;
+
+                        if (!_iteratorNormalCompletion2 && _iterator2["return"]) {
+                          _iterator2["return"]();
+                        }
+
+                      case 28:
+                        context$3$0.prev = 28;
+
+                        if (!_didIteratorError2) {
+                          context$3$0.next = 31;
+                          break;
+                        }
+
+                        throw _iteratorError2;
+
+                      case 31:
+                        return context$3$0.finish(28);
+
+                      case 32:
+                        return context$3$0.finish(25);
+
+                      case 33:
+                      case "end":
+                        return context$3$0.stop();
+                    }
+                  }, callee$2$0, this, [[3, 21, 25, 33], [26,, 28, 32]]);
+                })());
+
+              case 5:
+                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                  context$2$0.next = 19;
+                  break;
+                }
+
+                file = _step.value;
+                context$2$0.prev = 7;
+                context$2$0.next = 10;
+                return _mzFs2["default"].stat(file);
+
+              case 10:
+                if (!context$2$0.sent) {
+                  context$2$0.next = 12;
+                  break;
+                }
+
+                return context$2$0.abrupt("return", file);
+
+              case 12:
+                context$2$0.next = 16;
+                break;
+
+              case 14:
+                context$2$0.prev = 14;
+                context$2$0.t0 = context$2$0["catch"](7);
+
+              case 16:
+                _iteratorNormalCompletion = true;
+                context$2$0.next = 5;
+                break;
+
+              case 19:
+                context$2$0.next = 25;
+                break;
+
+              case 21:
+                context$2$0.prev = 21;
+                context$2$0.t1 = context$2$0["catch"](3);
+                _didIteratorError = true;
+                _iteratorError = context$2$0.t1;
+
+              case 25:
+                context$2$0.prev = 25;
+                context$2$0.prev = 26;
+
+                if (!_iteratorNormalCompletion && _iterator["return"]) {
+                  _iterator["return"]();
+                }
+
+              case 28:
+                context$2$0.prev = 28;
+
+                if (!_didIteratorError) {
+                  context$2$0.next = 31;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 31:
+                return context$2$0.finish(28);
+
+              case 32:
+                return context$2$0.finish(25);
+
+              case 33:
+                throw { code: "ENOENT" };
+
+              case 34:
+              case "end":
+                return context$2$0.stop();
+            }
+          }, marked1$0[0], this, [[3, 21, 25, 33], [7, 14], [26,, 28, 32]]);
+        };
+
+        marked1$0 = [resolve].map(_regeneratorRuntime.mark);
         root = (0, _path.join)(process.cwd(), path);
-        context$1$0.t0 = require;
-        context$1$0.next = 4;
+        context$1$0.next = 5;
         return _mzFs2["default"].stat(path);
 
-      case 4:
+      case 5:
         if (!context$1$0.sent.isDirectory()) {
-          context$1$0.next = 10;
+          context$1$0.next = 11;
           break;
         }
 
-        context$1$0.next = 7;
-        return resolve(match(names.concat(names.map(function (name) {
-          return name.toLowerCase();
-        })).map(function (name) {
-          return (0, _path.join)(root, name);
-        }), _Object$keys(_interpret.jsVariants)));
+        context$1$0.next = 8;
+        return resolve(root);
 
-      case 7:
-        context$1$0.t1 = context$1$0.sent;
-        context$1$0.next = 11;
+      case 8:
+        context$1$0.t0 = context$1$0.sent;
+        context$1$0.next = 12;
         break;
 
-      case 10:
-        context$1$0.t1 = root;
-
       case 11:
-        context$1$0.t2 = context$1$0.t1;
-        return context$1$0.abrupt("return", hook(context$1$0.t0, context$1$0.t2));
+        context$1$0.t0 = root;
+
+      case 12:
+        return context$1$0.abrupt("return", context$1$0.t0);
 
       case 13:
       case "end":
         return context$1$0.stop();
     }
   }, marked0$0[0], this);
-}
-
-/**
- * Hook a require function to allow loading files written in ES6, ES7,
- * CoffeeScript, etc., to be automatically transpiled on the fly.
- * @param {Function} require function to load selected module
- * @param {String} path to Flyfile
- * @return {String} path to Flyfile
- */
-function hook(require, path) {
-  var js = _interpret.jsVariants["." + (path.split(".").slice(1).join(".") || "js")];
-  if (Array.isArray(js)) {
-    (function reduce(modules) {
-      if (modules.length === 0) return;
-      try {
-        require(modules[0].module ? modules[0].module : modules[0])({ stage: 0 });
-      } catch (_) {
-        reduce(modules.slice(1));
-      }
-    })(js);
-  } else if (js) {
-    require(js);
-  }
-  return path;
-}
-
-/**
- * Find the first existing file in files.
- * @param {[String]} list of files to search
- * @return {String} path of an existing file
- */
-function resolve(files) {
-  return _regeneratorRuntime.wrap(function resolve$(context$1$0) {
-    while (1) switch (context$1$0.prev = context$1$0.next) {
-      case 0:
-        if (!(files.length === 0)) {
-          context$1$0.next = 2;
-          break;
-        }
-
-        throw { code: "ENOENT" };
-
-      case 2:
-        context$1$0.prev = 2;
-        context$1$0.next = 5;
-        return _mzFs2["default"].stat(files[0]);
-
-      case 5:
-        if (!context$1$0.sent) {
-          context$1$0.next = 7;
-          break;
-        }
-
-        return context$1$0.abrupt("return", files[0]);
-
-      case 7:
-        context$1$0.next = 14;
-        break;
-
-      case 9:
-        context$1$0.prev = 9;
-        context$1$0.t0 = context$1$0["catch"](2);
-        context$1$0.next = 13;
-        return resolve(files.slice(1));
-
-      case 13:
-        return context$1$0.abrupt("return", context$1$0.sent);
-
-      case 14:
-      case "end":
-        return context$1$0.stop();
-    }
-  }, marked0$0[1], this, [[2, 9]]);
-}
-
-/**
- * Match files and extensions.
- * @param {[String]} list of files
- * @param {[String]} list of extensions
- * @return {Array} Product of matched ${files}${extensions}
- */
-function match(files, exts) {
-  return files.length === 1 ? exts.map(function (ext) {
-    return "" + files[0] + ext;
-  }) : match([files[0]], exts).concat(match(files.slice(1), exts));
 }

@@ -9,12 +9,12 @@ exports.notifyUpdates = notifyUpdates;
 
 var _updateNotifier = require("update-notifier");
 
-var _updateNotifier2 = _interopRequireDefault(_updateNotifier);
-
 /**
- * update-notifier wrapper.
- * @param {Array} options
- */
+  update-notifier wrapper.
+  @param {Array} options
+*/
+
+var _updateNotifier2 = _interopRequireDefault(_updateNotifier);
 
 function notifyUpdates(options) {
   (0, _updateNotifier2["default"])(options).notify();

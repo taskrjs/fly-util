@@ -22,11 +22,11 @@ var _dateformat2 = _interopRequireDefault(_dateformat);
 
 var _prettyjson = require("prettyjson");
 
-var _prettyjson2 = _interopRequireDefault(_prettyjson);
-
 /**
-* Log utilities.
+  Log utilities.
 */
+
+var _prettyjson2 = _interopRequireDefault(_prettyjson);
 
 function log() {
   for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
@@ -71,11 +71,11 @@ function debug() {
 }
 
 /**
-* Apply args to console[method] and add a date stamp.
-* Bind `this` to an object with the following options
-* @prop {Color String} date stamp color
-* @prop {String} console method to use
-* @prop {[String]} custom style to append to args
+  Apply args to console[method] and add a date stamp.
+  Bind `this` to an object with the following options
+  @prop {Color String} date stamp color
+  @prop {String} console method to use
+  @prop {[String]} custom style to append to args
 */
 
 function stamp() {
@@ -90,8 +90,8 @@ function stamp() {
 }
 
 /**
-* prettyjson wrapper and stack tracer.
-* @param {Object} error object
+  prettyjson wrapper and stack tracer.
+  @param {Object} error object
 */
 
 function trace(e) {

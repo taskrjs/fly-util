@@ -8,6 +8,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _hook = require("./hook");
+
+_defaults(exports, _interopRequireWildcard(_hook));
+
 var _defer = require("./defer");
 
 _defaults(exports, _interopRequireWildcard(_defer));
@@ -24,18 +28,18 @@ var _flatten = require("./flatten");
 
 _defaults(exports, _interopRequireWildcard(_flatten));
 
+var _logging = require("./logging");
+
+_defaults(exports, _interopRequireWildcard(_logging));
+
 var _findPath = require("./findPath");
 
 _defaults(exports, _interopRequireWildcard(_findPath));
 
-var _findPlugins = require("./findPlugins");
+var _loadPlugins = require("./loadPlugins");
 
-_defaults(exports, _interopRequireWildcard(_findPlugins));
+_defaults(exports, _interopRequireWildcard(_loadPlugins));
 
 var _notifyUpdates = require("./notifyUpdates");
 
 _defaults(exports, _interopRequireWildcard(_notifyUpdates));
-
-var _logging = require("./logging");
-
-_defaults(exports, _interopRequireWildcard(_logging));

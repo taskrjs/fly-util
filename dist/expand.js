@@ -11,14 +11,14 @@ exports.expand = expand;
 
 var _glob = require("glob");
 
-var _glob2 = _interopRequireDefault(_glob);
-
 /**
- * Promisified glob wrapper.
- * @param {String} pattern to match
- * @param {Object} options
- * @return {Promise}
- */
+  Promisify glob.
+  @param {String} pattern to match
+  @param {Object} options
+  @return {Promise}
+*/
+
+var _glob2 = _interopRequireDefault(_glob);
 
 function expand(pattern, options) {
   return new _Promise(function (resolve, reject) {

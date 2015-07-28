@@ -1,8 +1,8 @@
 /**
- * Flatten a nested array recursively.
- * @param {Array}
- * @return [[a],[b],[c]] -> [a,b,c]
- */
+  Flatten a nested array recursively.
+  @param {Array}
+  @return [[a],[b],[c]] -> [a,b,c]
+*/
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

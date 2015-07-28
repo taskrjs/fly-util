@@ -9,14 +9,14 @@ exports.watch = watch;
 
 var _chokidar = require("chokidar");
 
-var _chokidar2 = _interopRequireDefault(_chokidar);
-
 /**
- * chokidar.watch wrapper.
- * @param {Array:String} globs to watch
- * @param {Object} chokidar options
- * @return {chokidar.FSWatcher}
- */
+  chokidar.watch wrapper.
+  @param {Array:String} globs to watch
+  @param {Object} chokidar options
+  @return {chokidar.FSWatcher}
+*/
+
+var _chokidar2 = _interopRequireDefault(_chokidar);
 
 function watch(globs, options) {
   return _chokidar2["default"].watch(globs, options);
