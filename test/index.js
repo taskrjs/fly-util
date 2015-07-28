@@ -1,7 +1,8 @@
+const co = require("co")
 const test = require("tape").test
 const util = require("../dist")
-const path = require("path")
-const go = require("co")
+const join = require("path").join
+const basename = require("path").basename
 
 function defined (values) {
   return (values.length === 0)
@@ -12,63 +13,95 @@ function defined (values) {
 }
 
 function instances (object, values) {
-  return values.map(function (key) { return object[key] })
+  return values.map((key) => object[key])
 }
 
 function asyncFunc (value, handler) {
-  setTimeout(function () {
-    handler(undefined, value)
-  }, 100)
+  setTimeout(() => (handler(undefined, value)), 100)
 }
 
 function asyncFuncWithOptions (value, options, handler) {
-  setTimeout(function () {
-    handler(undefined, value)
-  }, options.time)
+  setTimeout(() => (handler(undefined, value)), options.time)
 }
 
-test("Fly utilities test", function (t) {
+test("Fly Utility Toolbox ✈", (t) => {
   t.ok(util !== undefined, "it's real")
 
   const EXPORTS = [
-    "defer", "expand", "findPath", "findPlugins", "flatten",
+    "defer", "expand", "findPath", "loadPlugins", "flatten", "hook",
     "notifyUpdates", "watch", "log", "debug", "warn", "stamp", "trace"]
 
-  t.ok(defined(instances(util, EXPORTS)), "[" + EXPORTS + "] are all defined")
+  t.ok(defined(instances(util, EXPORTS)), "[${EXPORTS}] are all defined")
   t.end()
 })
 
-test("util.trace (e)", function (t) {
+test("util.trace (e) ✈", (t) => {
   t.equal(util.trace({ ok: true }), undefined, "does not fail")
   t.end()
 })
 
-
-test("util.defer (asyncFunc)", function (t) {
+test("util.defer (asyncFunc) ✈", (t) => {
   util
     .defer(asyncFunc)(42)
-    .then(function (value) {
+    .then((value) => {
       t.equal(value, 42, "promisifies an async func")
       t.end()
     })
 })
 
-test("util.defer (asyncFunc /w options)", function (t) {
+test("util.defer (asyncFunc /w options) ✈", (t) => {
   util
     .defer(asyncFuncWithOptions)(1985, { time: 100 })
-    .then(function (value) {
+    .then((value) => {
       t.equal(value, 1985, "promisifies an async func w/ options")
       t.end()
     })
 })
 
-test("util.flatten (array)", function (t) {
+test("util.flatten (array) ✈", (t) => {
   t.deepEqual(util.flatten([[[1],[2]],[3,4],[[[[5,6]]]],[7],[8]]),
     [1,2,3,4,5,6,7,8], "flattens arrays")
   t.end()
 })
 
-test("util.findPlugins ({ pkg, blacklist = []})", function (t) {
+test("util.expand (pattern, options) ✈", (t) => {
+  const expected = ["a.js", "b.js", "index.js", "Flyfile.js", "flyfile.js", "sample.babel.js"]
+  util.expand("./test/**/*.js").then((files) => {
+    files.map((file) => basename(file)).forEach((file) => {
+      t.ok(!!~expected.indexOf(file), `expands and handles globs: ${file}`)
+    })
+    t.end()
+  }).catch((e) => {
+    t.ok(false, e)
+  })
+})
+
+test("util.findPath (path) ✈", (t) => {
+  co(function* () {
+    try {
+      t.equal(basename(yield util.findPath("test/fixtures/Flyfile.js")),
+        "Flyfile.js", "find Flyifle given a file")
+      t.equal(basename(yield util.findPath("test/fixtures")),
+        "Flyfile.js", "find Flyifle given a path")
+    } finally {
+      t.end()
+    }
+  })
+})
+
+test("util.hook (module) ✈", (t) => {
+  const coffee = require(util.hook(
+    join(process.cwd(), "test/fixtures/sample.coffee")))
+  t.equal(coffee.getSecret(), 42, "binds to coffee-script")
+
+  const babel = require(util.hook(
+    join(process.cwd(), "test/fixtures/sample.babel.js")))
+  t.equal(babel.getSecret(), 42, "binds to babel")
+
+  t.end()
+})
+
+test("util.loadPlugins ({ pkg, regex, blacklist = []}) ✈", (t) => {
   const pkgs = [
     {
       msg: "reads fly-* deps",
@@ -133,32 +166,14 @@ test("util.findPlugins ({ pkg, blacklist = []})", function (t) {
       devDependencies: {}
     },
   ]
-  t.deepEqual(util.findPlugins(undefined), [], "return [] for undefined pkg")
-  t.deepEqual(util.findPlugins({}), [], "return [] for empty pkg")
+  t.deepEqual(util.loadPlugins(undefined), [], "return [] for undefined pkg")
+  t.deepEqual(util.loadPlugins({}), [], "return [] for empty pkg")
+
   pkgs.forEach((pkg) => {
-    t.deepEqual(util.findPlugins(pkg, pkg.blacklist), pkg.expected, pkg.msg)
+    t.deepEqual(util.loadPlugins(
+      pkg, (_) => _, pkg.blacklist
+    ), pkg.expected, pkg.msg)
   })
+
   t.end()
-})
-
-
-test("util.expand (pattern, options)", function (t) {
-  const expected = ["a.js", "b.js", "index.js", "Flyfile.js", "Flypath.js"]
-  util.expand("./test/**/*.js").then((files) => {
-    files.map((file) => path.basename(file)).forEach((file) => {
-      t.ok(!!~expected.indexOf(file), "expands and handles globs:" + file)
-    })
-    t.end()
-  }).catch((e) => {
-    t.ok(false, e)
-  })
-})
-
-test("*findFlypath (path, names)", function (t) {
-  go(function* () {
-    t.equal(path.basename(yield util.findFlypath("./test/stub/flyfiles/Flypath/Flypath.js")), "Flypath.js", "return path to flypath if flypath is specified directly")
-    t.equal(path.basename(yield util.findFlypath("./test/stub/flyfiles/Flyfile/Flyfile.js")), "Flyfile.js", "return path to flyfile if flyfile is specified directly")
-    t.equal(path.basename(yield util.findFlypath("./test/stub/flyfiles/Flyfile/")), "Flyfile.js", "return path to existing Flyfile in directory")
-    t.equal(path.basename(yield util.findFlypath("./test/stub/flyfiles/Flypath/")), "Flypath.js", "return path to existing Flypath in directory")
-  }).then(_ => t.end()).catch(_ => t.end())
 })
