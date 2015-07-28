@@ -1,9 +1,8 @@
 import clor from "clor"
 import datefmt from "dateformat"
 import pretty from "prettyjson"
-
 /**
-* Log utilities.
+  Log utilities.
 */
 export function log (...args) {
   stamp.apply({ method: "log", color: "gray" }, args)
@@ -32,13 +31,12 @@ export function debug (...args) {
       color: "magenta" }, args)
   return this
 }
-
 /**
-* Apply args to console[method] and add a date stamp.
-* Bind `this` to an object with the following options
-* @prop {Color String} date stamp color
-* @prop {String} console method to use
-* @prop {[String]} custom style to append to args
+  Apply args to console[method] and add a date stamp.
+  Bind `this` to an object with the following options
+  @prop {Color String} date stamp color
+  @prop {String} console method to use
+  @prop {[String]} custom style to append to args
 */
 export function stamp (...args) {
   const date = datefmt(new Date(), "HH:MM:ss")
@@ -46,10 +44,9 @@ export function stamp (...args) {
   console[this.method].apply(console, this.custom
     ? [this.custom].concat(args) : args)
 }
-
 /**
-* prettyjson wrapper and stack tracer.
-* @param {Object} error object
+  prettyjson wrapper and stack tracer.
+  @param {Object} error object
 */
 export function trace (e) {
   console.error(pretty.render(e)
