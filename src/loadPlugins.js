@@ -5,11 +5,11 @@ import { flatten } from "./flatten"
   @param {Object} package.json
   @param {Function} load handler
   @param {[String]} blacklisted plugins
-  @param {Boolean} require hook
+  @param {Boolean} bind require
   @return {[String]} list of fly plugins
 */
-export function loadPlugins (pkg, load, blacklist = [], hook = true) {
-  if (hook) require("babel/register")({
+export function loadPlugins (pkg, load, blacklist = [], bind = true) {
+  if (bind) require("babel/register")({
     stage: 0, only: [/fly-[-\w]+\/[-\w]+\./, /[fF]lyfile\.js/]
   })
   return pkg

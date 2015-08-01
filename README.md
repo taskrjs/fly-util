@@ -99,12 +99,12 @@ Flatten a nested array recursively.
 
 ## `loadPlugins`
 ```js
-function loadPlugins (pkg, load, blacklist = [], hook = true)
+function loadPlugins (pkg, load, blacklist = [], bind = true)
 ```
 + `pkg {Package}` project's package.json
 + `load {Function}` load handler
 + `blacklist {Array}` blacklisted plugins
-+ `hook {Boolean}` require hook
++ `bind {Boolean}` bind require
 + `return {Array}` list of fly dependencies that can be loaded
 
 Find `fly-*` plugins listed in a package dependencies.
@@ -139,12 +139,12 @@ function notifyUpdates (options)
 
 Wrapper for [update-notifier](https://github.com/yeoman/update-notifier).
 
-## `findPath`
+## `findFile`
 ```js
-function* findPath (path, names)
+function* findFile (path, names)
 ```
 + `path {String}` file or path to the Flyfile
-+ `names {[String]}` Optional. list of alternative Flyfile names
++ `hook {Function}` Optional. use to bind require or process path
 + `return {String}` path to the Flyfile
 
 Find a valid Flyfile from a given path. If `path` is a directory find the first Flyfile with a [supported](https://github.com/tkellen/js-interpret) extension.

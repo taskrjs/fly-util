@@ -11,8 +11,8 @@ var _interopRequireDefault = require("babel-runtime/helpers/interop-require-defa
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.findPath = findPath;
-var marked0$0 = [findPath].map(_regeneratorRuntime.mark);
+exports.findFile = findFile;
+var marked0$0 = [findFile].map(_regeneratorRuntime.mark);
 
 var _mzFs = require("mz/fs");
 
@@ -23,19 +23,19 @@ var _path = require("path");
 var _interpret = require("interpret");
 
 /**
-  Resolve a valid Flyfile from a path.
+  Find a valid Flyfile from a given path.
   See tkellen/js-interpret for supported extensions.
   @param {String} file or path to the Flyfile
   @param {Function} use to bind require or process path
   @return {String} path to the Flyfile
 */
 
-function findPath(path) {
+function findFile(path) {
   var hook = arguments.length <= 1 || arguments[1] === undefined ? function (_) {
     return _;
   } : arguments[1];
   var marked1$0, root, resolve;
-  return _regeneratorRuntime.wrap(function findPath$(context$1$0) {
+  return _regeneratorRuntime.wrap(function findFile$(context$1$0) {
     while (1) switch (context$1$0.prev = context$1$0.next) {
       case 0:
         resolve = function resolve(root) {

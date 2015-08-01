@@ -15,15 +15,15 @@ var _flatten = require("./flatten");
   @param {Object} package.json
   @param {Function} load handler
   @param {[String]} blacklisted plugins
-  @param {Boolean} require hook
+  @param {Boolean} bind require
   @return {[String]} list of fly plugins
 */
 
 function loadPlugins(pkg, load) {
   var blacklist = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
-  var hook = arguments.length <= 3 || arguments[3] === undefined ? true : arguments[3];
+  var bind = arguments.length <= 3 || arguments[3] === undefined ? true : arguments[3];
 
-  if (hook) require("babel/register")({
+  if (bind) require("babel/register")({
     stage: 0, only: [/fly-[-\w]+\/[-\w]+\./, /[fF]lyfile\.js/]
   });
   return pkg ? (0, _flatten.flatten)(["dependencies", "devDependencies", "peerDependencies"].filter(function (key) {

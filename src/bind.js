@@ -1,11 +1,10 @@
 import { jsVariants } from "interpret"
 /**
-  Bind to node's require based in a file extension.
-  Use babel by default.
+  Bind to node's require to support JavaScript variants.
   @param {String} path to Flyfile
   @return {String} path
 */
-export function hook (path) {
+export function bind (path) {
   const js = jsVariants[`.${path.split(".").slice(1).join(".") || "js"}`]
   || jsVariants[".babel.js"]
   if (Array.isArray(js)) {

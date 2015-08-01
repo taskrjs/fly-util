@@ -2,19 +2,20 @@ import fs from "mz/fs"
 import { join } from "path"
 import { jsVariants } from "interpret"
 /**
-  Resolve a valid Flyfile from a path.
+  Find a valid Flyfile from a given path.
   See tkellen/js-interpret for supported extensions.
   @param {String} file or path to the Flyfile
+  @param {Function} use to bind require or process path
   @return {String} path to the Flyfile
 */
-export function* findPath (path) {
+export function* findFile (path, hook = _ => _) {
   const root = join(process.cwd(), path)
-  return (yield fs.stat(path)).isDirectory()
-    ? yield resolve(root) : root
+  return hook((yield fs.stat(path))
+    .isDirectory() ? yield resolve(root) : root)
   function* resolve (root) {
-    for (const file of function* () {
-      for (const ext of Object.keys(jsVariants))
-        for (const name of ["Flyfile", "flyfile"])
+    for (let file of function* () {
+      for (let ext of Object.keys(jsVariants))
+        for (let name of ["Flyfile", "flyfile"])
           yield join(root, `${name}${ext}`)
     }()) try { if (yield fs.stat(file)) return file } catch (_) {}
     throw { code: "ENOENT" }

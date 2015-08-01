@@ -28,7 +28,7 @@ test("Fly Utility Toolbox ✈", (t) => {
   t.ok(util !== undefined, "it's real")
 
   const EXPORTS = [
-    "defer", "expand", "findPath", "loadPlugins", "flatten", "hook",
+    "defer", "expand", "findFile", "loadPlugins", "flatten", "bind",
     "notifyUpdates", "watch", "log", "debug", "warn", "stamp", "trace"]
 
   t.ok(defined(instances(util, EXPORTS)), "[${EXPORTS}] are all defined")
@@ -76,12 +76,12 @@ test("util.expand (pattern, options) ✈", (t) => {
   })
 })
 
-test("util.findPath (path) ✈", (t) => {
+test("util.findFile (path) ✈", (t) => {
   co(function* () {
     try {
-      t.equal(basename(yield util.findPath("test/fixtures/Flyfile.js")),
+      t.equal(basename(yield util.findFile("test/fixtures/Flyfile.js")),
         "Flyfile.js", "find Flyifle given a file")
-      t.equal(basename(yield util.findPath("test/fixtures")),
+      t.equal(basename(yield util.findFile("test/fixtures")),
         "Flyfile.js", "find Flyifle given a path")
     } finally {
       t.end()
@@ -89,12 +89,12 @@ test("util.findPath (path) ✈", (t) => {
   })
 })
 
-test("util.hook (module) ✈", (t) => {
-  const coffee = require(util.hook(
+test("util.bind (module) ✈", (t) => {
+  const coffee = require(util.bind(
     join(process.cwd(), "test/fixtures/sample.coffee")))
   t.equal(coffee.getSecret(), 42, "binds to coffee-script")
 
-  const babel = require(util.hook(
+  const babel = require(util.bind(
     join(process.cwd(), "test/fixtures/sample.babel.js")))
   t.equal(babel.getSecret(), 42, "binds to babel")
 

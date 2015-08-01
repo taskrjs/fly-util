@@ -8,9 +8,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _hook = require("./hook");
+var _bind = require("./bind");
 
-_defaults(exports, _interopRequireWildcard(_hook));
+_defaults(exports, _interopRequireWildcard(_bind));
 
 var _defer = require("./defer");
 
@@ -32,9 +32,9 @@ var _logging = require("./logging");
 
 _defaults(exports, _interopRequireWildcard(_logging));
 
-var _findPath = require("./findPath");
+var _findFile = require("./findFile");
 
-_defaults(exports, _interopRequireWildcard(_findPath));
+_defaults(exports, _interopRequireWildcard(_findFile));
 
 var _loadPlugins = require("./loadPlugins");
 
