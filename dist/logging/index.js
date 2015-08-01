@@ -7,8 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.log = log;
 exports.error = error;
-exports.warn = warn;
-exports.debug = debug;
+exports.alert = alert;
 exports.stamp = stamp;
 exports.trace = trace;
 
@@ -46,27 +45,15 @@ function error() {
   return this;
 }
 
-function warn() {
+function alert() {
   for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
     args[_key3] = arguments[_key3];
   }
 
-  if (!process.env.SILENT) stamp.apply({
+  if (process.env.VERBOSE) stamp.apply({
     custom: "" + _clor2["default"].yellow.bold("%s"),
     method: "log",
     color: "yellow" }, args);
-  return this;
-}
-
-function debug() {
-  for (var _len4 = arguments.length, args = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-    args[_key4] = arguments[_key4];
-  }
-
-  if (process.env.DEBUG) stamp.apply({
-    custom: "" + _clor2["default"].magenta("%s"),
-    method: "log",
-    color: "magenta" }, args);
   return this;
 }
 
@@ -82,8 +69,8 @@ function stamp() {
   var date = (0, _dateformat2["default"])(new Date(), "HH:MM:ss");
   process.stdout.write("[" + _clor2["default"][this.color](date) + "] ");
 
-  for (var _len5 = arguments.length, args = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
-    args[_key5] = arguments[_key5];
+  for (var _len4 = arguments.length, args = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+    args[_key4] = arguments[_key4];
   }
 
   console[this.method].apply(console, this.custom ? [this.custom].concat(args) : args);

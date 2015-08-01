@@ -14,6 +14,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.find = find;
 var marked0$0 = [find].map(_regeneratorRuntime.mark);
 
+var _debug = require("debug");
+
+var _debug2 = _interopRequireDefault(_debug);
+
 var _mzFs = require("mz/fs");
 
 var _mzFs2 = _interopRequireDefault(_mzFs);
@@ -22,9 +26,9 @@ var _path = require("path");
 
 var _interpret = require("interpret");
 
+var _ = (0, _debug2["default"])("fly:util:find");
 /**
   Find a valid Flyfile from a given path.
-  See tkellen/js-interpret for supported extensions.
   @param {String} file or path to the Flyfile
   @param {Function} use to bind require or process path
   @return {String} path to the Flyfile
@@ -208,32 +212,34 @@ function find(path) {
         };
 
         marked1$0 = [resolve].map(_regeneratorRuntime.mark);
+
+        _("resolve path to flyfile %o", path);
         root = (0, _path.join)(process.cwd(), path);
-        context$1$0.next = 5;
+        context$1$0.next = 6;
         return _mzFs2["default"].stat(path);
 
-      case 5:
+      case 6:
         if (!context$1$0.sent.isDirectory()) {
-          context$1$0.next = 11;
+          context$1$0.next = 12;
           break;
         }
 
-        context$1$0.next = 8;
+        context$1$0.next = 9;
         return resolve(root);
 
-      case 8:
+      case 9:
         context$1$0.t0 = context$1$0.sent;
-        context$1$0.next = 12;
+        context$1$0.next = 13;
         break;
 
-      case 11:
+      case 12:
         context$1$0.t0 = root;
 
-      case 12:
+      case 13:
         context$1$0.t1 = context$1$0.t0;
         return context$1$0.abrupt("return", hook(context$1$0.t1));
 
-      case 14:
+      case 15:
       case "end":
         return context$1$0.stop();
     }

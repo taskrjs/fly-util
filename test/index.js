@@ -4,18 +4,6 @@ const util = require("../dist")
 const join = require("path").join
 const basename = require("path").basename
 
-function defined (values) {
-  return (values.length === 0)
-    ? true
-    : (values[0] !== undefined)
-      ? defined(values.slice(1))
-      : false
-}
-
-function instances (object, values) {
-  return values.map((key) => object[key])
-}
-
 function asyncFunc (value, handler) {
   setTimeout(() => (handler(undefined, value)), 100)
 }
@@ -27,11 +15,13 @@ function asyncFuncWithOptions (value, options, handler) {
 test("Fly Utility Toolbox ✈", (t) => {
   t.ok(util !== undefined, "it's real")
 
-  const EXPORTS = [
-    "defer", "expand", "find", "filter", "flatten", "bind",
-    "notifyUpdates", "watch", "log", "debug", "warn", "stamp", "trace"]
+  Array.prototype.concat([
+    "bind", "defer", "expand", "filter", "find", "flatten", "notifyUpdates",
+    "watch", "log", "error", "alert", "stamp", "trace"])
+  .forEach((prop) => {
+    t.ok(util[prop] !== undefined, `${prop} is defined`)
+  })
 
-  t.ok(defined(instances(util, EXPORTS)), "[${EXPORTS}] are all defined")
   t.end()
 })
 

@@ -6,6 +6,7 @@
 
 # Changelog
 
++ [v3.9.0](#v390)
 + [v3.6.0](#v360)
 + [v3.5.0](#v350)
 + [v3.4.3](#v343)
@@ -18,6 +19,16 @@
 + [v3.0.0](#v300)
 + [v2.0.0](#v200)
 + [v1.0.0](#v100)
+
+## v3.9.0
+
++ New: Added debug instrumentation to `bind`, `filter` and `find`. Set `DEBUG="*"` env variable to log everything or filter by `fly:[util]:[bind|filter|find]`. See [`debug`](https://github.com/visionmedia/debug) documentation for more info.
+
++ Change: `loadPlugins` renamed to `filter` which is what the method actually does. `findPath` was renamed to just `find`.
+
++ Change: `warn` was renamed to `alert` and no longer shows output by default. Set a `VERBOSE` env variable when running fly to enable the output.
+
++ Change: Remove `fly-util/debug` and favor using alternative debug options like [debug](https://github.com/visionmedia/debug) instead.
 
 ## v3.6.0
 

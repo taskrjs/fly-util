@@ -14,8 +14,8 @@ export function error (...args) {
   return this
 }
 
-export function warn (...args) {
-  if (!process.env.SILENT)
+export function alert (...args) {
+  if (process.env.VERBOSE)
     stamp.apply({
       custom: `${clor.yellow.bold("%s")}`,
       method: "log",
@@ -23,14 +23,6 @@ export function warn (...args) {
   return this
 }
 
-export function debug (...args) {
-  if (process.env.DEBUG)
-    stamp.apply({
-      custom: `${clor.magenta("%s")}`,
-      method: "log",
-      color: "magenta" }, args)
-  return this
-}
 /**
   Apply args to console[method] and add a date stamp.
   Bind `this` to an object with the following options
