@@ -28,7 +28,7 @@ test("Fly Utility Toolbox ✈", (t) => {
   t.ok(util !== undefined, "it's real")
 
   const EXPORTS = [
-    "defer", "expand", "findFile", "loadPlugins", "flatten", "bind",
+    "defer", "expand", "find", "filter", "flatten", "bind",
     "notifyUpdates", "watch", "log", "debug", "warn", "stamp", "trace"]
 
   t.ok(defined(instances(util, EXPORTS)), "[${EXPORTS}] are all defined")
@@ -76,12 +76,12 @@ test("util.expand (pattern, options) ✈", (t) => {
   })
 })
 
-test("util.findFile (path) ✈", (t) => {
+test("util.find (path) ✈", (t) => {
   co(function* () {
     try {
-      t.equal(basename(yield util.findFile("test/fixtures/Flyfile.js")),
+      t.equal(basename(yield util.find("test/fixtures/Flyfile.js")),
         "Flyfile.js", "find Flyifle given a file")
-      t.equal(basename(yield util.findFile("test/fixtures")),
+      t.equal(basename(yield util.find("test/fixtures")),
         "Flyfile.js", "find Flyifle given a path")
     } finally {
       t.end()
@@ -101,7 +101,7 @@ test("util.bind (module) ✈", (t) => {
   t.end()
 })
 
-test("util.loadPlugins ({ pkg, regex, blacklist = []}) ✈", (t) => {
+test("util.filter ({ pkg, regex, blacklist = []}) ✈", (t) => {
   const pkgs = [
     {
       msg: "reads fly-* deps",
@@ -166,11 +166,11 @@ test("util.loadPlugins ({ pkg, regex, blacklist = []}) ✈", (t) => {
       devDependencies: {}
     },
   ]
-  t.deepEqual(util.loadPlugins(undefined), [], "return [] for undefined pkg")
-  t.deepEqual(util.loadPlugins({}), [], "return [] for empty pkg")
+  t.deepEqual(util.filter(undefined), [], "return [] for undefined pkg")
+  t.deepEqual(util.filter({}), [], "return [] for empty pkg")
 
   pkgs.forEach((pkg) => {
-    t.deepEqual(util.loadPlugins(
+    t.deepEqual(util.filter(
       pkg, (_) => _, pkg.blacklist
     ), pkg.expected, pkg.msg)
   })

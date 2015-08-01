@@ -8,6 +8,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _find = require("./find");
+
+_defaults(exports, _interopRequireWildcard(_find));
+
 var _bind = require("./bind");
 
 _defaults(exports, _interopRequireWildcard(_bind));
@@ -15,6 +19,10 @@ _defaults(exports, _interopRequireWildcard(_bind));
 var _defer = require("./defer");
 
 _defaults(exports, _interopRequireWildcard(_defer));
+
+var _filter = require("./filter");
+
+_defaults(exports, _interopRequireWildcard(_filter));
 
 var _watch = require("./watch");
 
@@ -31,14 +39,6 @@ _defaults(exports, _interopRequireWildcard(_flatten));
 var _logging = require("./logging");
 
 _defaults(exports, _interopRequireWildcard(_logging));
-
-var _findFile = require("./findFile");
-
-_defaults(exports, _interopRequireWildcard(_findFile));
-
-var _loadPlugins = require("./loadPlugins");
-
-_defaults(exports, _interopRequireWildcard(_loadPlugins));
 
 var _notifyUpdates = require("./notifyUpdates");
 

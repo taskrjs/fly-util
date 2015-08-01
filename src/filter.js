@@ -1,6 +1,6 @@
 import { flatten } from "./flatten"
 /**
-  Find fly-* plugins listed in a package dependencies.
+  Filter fly-* plugins from a package dependencies.
   Bind require to compile plugins on the fly automatically.
   @param {Object} package.json
   @param {Function} load handler
@@ -8,7 +8,7 @@ import { flatten } from "./flatten"
   @param {Boolean} bind require
   @return {[String]} list of fly plugins
 */
-export function loadPlugins (pkg, load, blacklist = [], bind = true) {
+export function filter (pkg, load, blacklist = [], bind = true) {
   if (bind) require("babel/register")({
     stage: 0, only: [/fly-[-\w]+\/[-\w]+\./, /[fF]lyfile\.js/]
   })

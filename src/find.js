@@ -8,7 +8,7 @@ import { jsVariants } from "interpret"
   @param {Function} use to bind require or process path
   @return {String} path to the Flyfile
 */
-export function* findFile (path, hook = _ => _) {
+export function* find (path, hook = _ => _) {
   const root = join(process.cwd(), path)
   return hook((yield fs.stat(path))
     .isDirectory() ? yield resolve(root) : root)
