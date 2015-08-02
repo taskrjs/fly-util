@@ -164,8 +164,5 @@ test("util.filter ({ pkg, regex, blacklist = []}) ✈", (t) => {
       pkg, _ => _, pkg.blacklist
     ), pkg.expected, pkg.msg)
   })
-  util.log("Fly insr asd asd a")
-  util.alert("Fly insr asd asd a")
-  util.error("Fly insr asd asd a")
   t.end()
 })
