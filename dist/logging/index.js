@@ -32,7 +32,7 @@ function log() {
     args[_key] = arguments[_key];
   }
 
-  stamp.apply({ method: "log", color: "gray" }, args);
+  stamp.apply({ method: "log", color: "magenta" }, args);
   return this;
 }
 
@@ -67,7 +67,7 @@ function alert() {
 
 function stamp() {
   var date = (0, _dateformat2["default"])(new Date(), "HH:MM:ss");
-  process.stdout.write("[" + _clor2["default"][this.color](date) + "] ");
+  process.stdout.write("[" + _clor2["default"][this.color](process.env.DEBUG ? "DEBUG" : date) + "] ");
 
   for (var _len4 = arguments.length, args = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
     args[_key4] = arguments[_key4];

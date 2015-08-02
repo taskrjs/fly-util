@@ -5,7 +5,7 @@ import pretty from "prettyjson"
   Log utilities.
 */
 export function log (...args) {
-  stamp.apply({ method: "log", color: "gray" }, args)
+  stamp.apply({ method: "log", color: "magenta" }, args)
   return this
 }
 
@@ -32,7 +32,8 @@ export function alert (...args) {
 */
 export function stamp (...args) {
   const date = datefmt(new Date(), "HH:MM:ss")
-  process.stdout.write(`[${clor[this.color](date)}] `)
+  process.stdout.write(`[${clor[this.color](
+    process.env.DEBUG ? "DEBUG" : date)}] `)
   console[this.method].apply(console, this.custom
     ? [this.custom].concat(args) : args)
 }

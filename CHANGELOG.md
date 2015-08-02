@@ -6,6 +6,7 @@
 
 # Changelog
 
++ [v3.9.1](#v391)
 + [v3.9.0](#v390)
 + [v3.6.0](#v360)
 + [v3.5.0](#v350)
@@ -19,6 +20,12 @@
 + [v3.0.0](#v300)
 + [v2.0.0](#v200)
 + [v1.0.0](#v100)
+
+## v3.9.1
+
++ Improve: Now all logging methods replace the time stamp for a [DEBUG] tag. `debug` already prints the _mtimes_ between logs making the time stamp less useful.
+
++ Change: Now the default gray stamp is magenta.
 
 ## v3.9.0
 
