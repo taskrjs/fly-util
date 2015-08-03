@@ -17,7 +17,7 @@ var _ = (0, _debug2["default"])("fly:util:bind");
 var babel = _interpret.jsVariants[".babel.js"];
 /**
   Register bind to node require to support on the fly compilation.
-  Bind require to babel to support ES6/7 out of the box.
+  Bind require to babel to support ES6/7 by default.
   @param {String} path to a flyfile
   @param {Options} options to function modules, e.g, babel
   @return {String} path
