@@ -14,18 +14,25 @@ var _debug2 = _interopRequireDefault(_debug);
 var _interpret = require("interpret");
 
 var _ = (0, _debug2["default"])("fly:util:bind");
+var babel = _interpret.jsVariants[".babel.js"];
 /**
   Register bind to node require to support on the fly compilation.
+  Bind require to babel to support ES6/7 out of the box.
   @param {String} path to a flyfile
+  @param {Options} options to function modules, e.g, babel
   @return {String} path
 */
 
-function bind(path) {
-  var module = reduce(_interpret.jsVariants["." + (path.split(".").slice(1).join(".") || "js")] || _interpret.jsVariants[".babel.js"]);
-  if (module instanceof Function) module({ stage: 0 });
+function bind(path, options) {
+  var module = reduce(_interpret.jsVariants["." + ((path || "").split(".").slice(1).join(".") || "js")] || babel);
+  if (module instanceof Function) module(options);
   return path;
 }
 
+/**
+  Try require each module until we don't error.
+  @param {String} module name
+*/
 function reduce(_x) {
   var _again = true;
 

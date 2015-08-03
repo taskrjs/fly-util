@@ -1,18 +1,24 @@
 import debug from "debug"
 import { jsVariants as js } from "interpret"
 const _ = debug("fly:util:bind")
+const babel = js[".babel.js"]
 /**
   Register bind to node require to support on the fly compilation.
+  Bind require to babel to support ES6/7 by default.
   @param {String} path to a flyfile
+  @param {Options} options to function modules, e.g, babel
   @return {String} path
 */
-export function bind (path) {
-  const module = reduce(js[`.${path.split(".").slice(1).join(".") || "js"}`]
-  || js[".babel.js"])
-  if (module instanceof Function) module({ stage: 0 })
+export function bind (path, options) {
+  const module = reduce(
+    js[`.${(path || "").split(".").slice(1).join(".") || "js"}`] || babel)
+  if (module instanceof Function) module(options)
   return path
 }
-
+/**
+  Try require each module until we don't error.
+  @param {String} module name
+*/
 function reduce (m) {
   if (Array.isArray(m)) {
     try {

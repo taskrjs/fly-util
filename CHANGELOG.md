@@ -6,6 +6,7 @@
 
 # Changelog
 
++ [v4.0.0](#v400)
 + [v3.9.1](#v391)
 + [v3.9.0](#v390)
 + [v3.6.0](#v360)
@@ -20,6 +21,12 @@
 + [v3.0.0](#v300)
 + [v2.0.0](#v200)
 + [v1.0.0](#v100)
+
+## v4.0.0
+
++ Change: Remove `watch` and make Fly responsible to setup its own instance of `chokidar`. Users of `fly-util` have no use for `watch`. Compare this against `update-notifier` where users could benefit from using the wrapper inside their own plugins.
+
++ Change: `filter` does no longer bind require to babel. This should be up to the client, in this case, Fly.
 
 ## v3.9.1
 

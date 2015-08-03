@@ -35,7 +35,7 @@ var _ = (0, _debug2["default"])("fly:util:find");
 */
 
 function find(path) {
-  var hook = arguments.length <= 1 || arguments[1] === undefined ? function (_) {
+  var bind = arguments.length <= 1 || arguments[1] === undefined ? function (_) {
     return _;
   } : arguments[1];
   var marked1$0, root, resolve;
@@ -237,7 +237,7 @@ function find(path) {
 
       case 13:
         context$1$0.t1 = context$1$0.t0;
-        return context$1$0.abrupt("return", hook(context$1$0.t1));
+        return context$1$0.abrupt("return", bind(context$1$0.t1));
 
       case 15:
       case "end":

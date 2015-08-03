@@ -2,7 +2,7 @@
 
 var _defaults = require("babel-runtime/helpers/defaults")["default"];
 
-var _interopRequireWildcard = require("babel-runtime/helpers/interop-require-wildcard")["default"];
+var _interopExportWildcard = require("babel-runtime/helpers/interop-export-wildcard")["default"];
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -10,36 +10,32 @@ Object.defineProperty(exports, "__esModule", {
 
 var _find = require("./find");
 
-_defaults(exports, _interopRequireWildcard(_find));
+_defaults(exports, _interopExportWildcard(_find, _defaults));
 
 var _bind = require("./bind");
 
-_defaults(exports, _interopRequireWildcard(_bind));
+_defaults(exports, _interopExportWildcard(_bind, _defaults));
 
 var _defer = require("./defer");
 
-_defaults(exports, _interopRequireWildcard(_defer));
+_defaults(exports, _interopExportWildcard(_defer, _defaults));
 
 var _filter = require("./filter");
 
-_defaults(exports, _interopRequireWildcard(_filter));
-
-var _watch = require("./watch");
-
-_defaults(exports, _interopRequireWildcard(_watch));
+_defaults(exports, _interopExportWildcard(_filter, _defaults));
 
 var _expand = require("./expand");
 
-_defaults(exports, _interopRequireWildcard(_expand));
+_defaults(exports, _interopExportWildcard(_expand, _defaults));
 
 var _flatten = require("./flatten");
 
-_defaults(exports, _interopRequireWildcard(_flatten));
+_defaults(exports, _interopExportWildcard(_flatten, _defaults));
 
 var _logging = require("./logging");
 
-_defaults(exports, _interopRequireWildcard(_logging));
+_defaults(exports, _interopExportWildcard(_logging, _defaults));
 
 var _notifyUpdates = require("./notifyUpdates");
 
-_defaults(exports, _interopRequireWildcard(_notifyUpdates));
+_defaults(exports, _interopExportWildcard(_notifyUpdates, _defaults));

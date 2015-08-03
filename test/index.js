@@ -12,40 +12,25 @@ function asyncFuncWithOptions (value, options, handler) {
   setTimeout(() => (handler(undefined, value)), options.time)
 }
 
-test("Fly Utility Toolbox ✈", (t) => {
+test("fly utilities ✈", (t) => {
   t.ok(util !== undefined, "it's real")
-
   Array.prototype.concat([
-    "bind", "defer", "expand", "filter", "find", "flatten", "notifyUpdates",
-    "watch", "log", "error", "alert", "stamp", "trace"])
-  .forEach((prop) => {
-    t.ok(util[prop] !== undefined, `${prop} is defined`)
-  })
-
-  t.end()
-})
-
-test("util.trace (e) ✈", (t) => {
-  t.equal(util.trace({ ok: true }), undefined, "does not fail")
+    "bind", "defer", "expand", "filter", "find", "flatten",
+    "notifyUpdates", "log", "error", "alert", "stamp", "trace"
+  ]).forEach((prop) => t.ok(util[prop] !== undefined, `${prop} is defined`))
   t.end()
 })
 
 test("util.defer (asyncFunc) ✈", (t) => {
-  util
-    .defer(asyncFunc)(42)
-    .then((value) => {
-      t.equal(value, 42, "promisifies an async func")
-      t.end()
-    })
+  t.plan(1)
+  util.defer(asyncFunc)(42).then((value) =>
+    t.equal(value, 42, "promisifies an async func"))
 })
 
 test("util.defer (asyncFunc /w options) ✈", (t) => {
-  util
-    .defer(asyncFuncWithOptions)(1985, { time: 100 })
-    .then((value) => {
-      t.equal(value, 1985, "promisifies an async func w/ options")
-      t.end()
-    })
+  t.plan(1)
+  util.defer(asyncFuncWithOptions)(1985, { time: 100 }).then((value) =>
+    t.equal(value, 1985, "promisifies an async func w/ options"))
 })
 
 test("util.flatten (array) ✈", (t) => {
@@ -55,27 +40,23 @@ test("util.flatten (array) ✈", (t) => {
 })
 
 test("util.expand (pattern, options) ✈", (t) => {
-  const expected = ["a.js", "b.js", "index.js", "Flyfile.js", "flyfile.js", "sample.babel.js"]
+  t.plan(5)
+  const expected = ["a.js", "b.js", "index.js",
+  "Flyfile.js", "flyfile.js", "sample.babel.js"]
   util.expand("./test/**/*.js").then((files) => {
     files.map((file) => basename(file)).forEach((file) => {
       t.ok(!!~expected.indexOf(file), `expands and handles globs: ${file}`)
     })
-    t.end()
-  }).catch((e) => {
-    t.ok(false, e)
   })
 })
 
 test("util.find (path) ✈", (t) => {
+  t.plan(2)
   co(function* () {
-    try {
-      t.equal(basename(yield util.find("test/fixtures/Flyfile.js")),
-        "Flyfile.js", "find Flyifle given a file")
-      t.equal(basename(yield util.find("test/fixtures")),
-        "Flyfile.js", "find Flyifle given a path")
-    } finally {
-      t.end()
-    }
+    t.equal(basename(yield util.find("test/fixtures/Flyfile.js")),
+      "Flyfile.js", "find Flyifle given a file")
+    t.equal(basename(yield util.find("test/fixtures")),
+      "Flyfile.js", "find Flyifle given a path")
   })
 })
 

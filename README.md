@@ -1,4 +1,4 @@
-> Fly Utility Toolbox
+> Fly Utilities
 
 [![][fly-badge]][fly]
 [![npm package][npm-ver-link]][fly-util]
@@ -59,17 +59,11 @@ function error (...args)
 ```
 Wrapper for `Console.error`.
 
-## `warn`
+## `alert`
 ```js
-function warn (...args)
+function alert (...args)
 ```
-Wrapper for `Console.log` in a distinctive color. Output is suppressed if `process.env.SILENT` is truthy.
-
-## `debug`
-```js
-function debug (...args)
-```
-Wrapper for `Console.log` in a distinctive color. Output is displayed only if `process.env.DEBUG` is truthy.
+Wrapper for `Console.log` in a distinctive color. Set `process.env.VERBOSE` to show output.
 
 ## `trace`
  ```js
@@ -97,19 +91,16 @@ function flatten (array)
 
 Flatten a nested array recursively.
 
-## `loadPlugins`
+## `filter`
 ```js
-function loadPlugins (pkg, load, blacklist = [], bind = true)
+function filter (pkg, load, blacklist = [], bind = true)
 ```
 + `pkg {Package}` project's package.json
 + `load {Function}` load handler
 + `blacklist {Array}` blacklisted plugins
-+ `bind {Boolean}` bind require
 + `return {Array}` list of fly dependencies that can be loaded
 
 Find `fly-*` plugins listed in a package dependencies.
-
-Bind `require` to compile plugins on the _fly_ automatically.
 
 ## `expand`
 ```js
@@ -121,16 +112,6 @@ function expand (pattern, options)
 
 Promisified [glob](https://github.com/isaacs/node-glob) wrapper.
 
-## `watch`
-```js
-function watch (globs, options)
-```
-+ `globs {Array:String}` globs to watch
-+ `options {Object}` chokidar [options](https://github.com/paulmillr/chokidar#api)
-+ `return {chokidar.FSWatcher}`
-
-Wrapper for [chokidar.watch](https://github.com/paulmillr/chokidar).
-
 ## `notifyUpdates`
 ```js
 function notifyUpdates (options)
@@ -139,19 +120,19 @@ function notifyUpdates (options)
 
 Wrapper for [update-notifier](https://github.com/yeoman/update-notifier).
 
-## `findFile`
+## `find`
 ```js
-function* findFile (path, names)
+function* find (path, names)
 ```
 + `path {String}` file or path to the Flyfile
-+ `hook {Function}` Optional. use to bind require or process path
++ `bind {Function}` Optional. use to bind require or process path
 + `return {String}` path to the Flyfile
 
 Find a valid Flyfile from a given path. If `path` is a directory find the first Flyfile with a [supported](https://github.com/tkellen/js-interpret) extension.
 
-## `hook`
+## `bind`
 ```js
-function hook (path, names)
+function bind (path, names)
 ```
 
 + `path {String}` file or path to the Flyfile
@@ -164,17 +145,10 @@ Bind to node's require based in the file extension of your Flyfile.
 ## Dependencies
 
 + [`mz/fs`](https://github.com/normalize/mz) promise wrapped basic IO handling
-
 + [`clor`](https://github.com/bucaran/clor) terminal colors
-
 + [`glob`](https://github.com/isaacs/node-glob) expanding path/file glob patterns
-
 + [`prettyjson`](https://github.com/rafeca/prettyjson) pretty formatting for JSON objects
-
-+ [`chokidar`](https://gitter.im/paulmillr/chokidar) watch IO events.
-
-+ [`interpret`](https://github.com/tkellen/js-interpret) resolve modules for in-the-fly transpilation of ES6, CoffeeScript, Earl Grey, etc.
-
++ [`interpret`](https://github.com/tkellen/js-interpret) resolve modules for in-the-fly compilation.
 + [`update-notifier`](https://github.com/yeoman/update-notifier) CLI update notifications
 
 # License
