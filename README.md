@@ -41,10 +41,6 @@ npm install fly-util
 import util from "fly-util"
 ```
 
-```js
-const util = require("fly-util")
-```
-
 ## API
 
 ## `log`
@@ -111,14 +107,6 @@ function expand (pattern, options)
 + `return {Promise}`
 
 Promisified [glob](https://github.com/isaacs/node-glob) wrapper.
-
-## `notifyUpdates`
-```js
-function notifyUpdates (options)
-```
-+ `options {Array}` options
-
-Wrapper for [update-notifier](https://github.com/yeoman/update-notifier).
 
 ## `find`
 ```js
