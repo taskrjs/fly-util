@@ -1,6 +1,27 @@
 import clor from "clor"
 import datefmt from "dateformat"
 import pretty from "prettyjson"
+import debug from "debug"
+const _ = debug("fly:log")
+
+/**
+  Apply args to console[method] and add a date stamp.
+  Bind `this` to an object with the following options
+  @prop {Color String} date stamp color
+  @prop {String} console method to use
+  @prop {[String]} custom style to append to args
+*/
+export function stamp (...args) {
+  if (process.env.DEBUG) {
+    _.apply(_, args)
+  } else {
+    process.stdout.write(`[${clor[this.color](
+      datefmt(new Date(), "HH:MM:ss"))}] `)
+    console[this.method].apply(console, this.custom
+      ? [this.custom].concat(args) : args)
+  }
+}
+
 /**
   Log utilities.
 */
@@ -23,20 +44,6 @@ export function alert (...args) {
   return this
 }
 
-/**
-  Apply args to console[method] and add a date stamp.
-  Bind `this` to an object with the following options
-  @prop {Color String} date stamp color
-  @prop {String} console method to use
-  @prop {[String]} custom style to append to args
-*/
-export function stamp (...args) {
-  const date = datefmt(new Date(), "HH:MM:ss")
-  process.stdout.write(`[${clor[this.color](
-    process.env.DEBUG ? "DEBUG" : date)}] `)
-  console[this.method].apply(console, this.custom
-    ? [this.custom].concat(args) : args)
-}
 /**
   prettyjson wrapper and stack tracer.
   @param {Object} error object

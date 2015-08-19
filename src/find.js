@@ -2,7 +2,7 @@ import debug from "debug"
 import fs from "mz/fs"
 import { join } from "path"
 import { jsVariants } from "interpret"
-const _ = debug("fly:util:find")
+const _ = debug("fly:find")
 /**
   Find a valid Flyfile from a given path.
   @param {String} file or path to the Flyfile

@@ -1,6 +1,6 @@
 import debug from "debug"
 import { jsVariants as js } from "interpret"
-const _ = debug("fly:util:bind")
+const _ = debug("fly:bind")
 /**
   Register bind to node require to support on the fly compilation.
   Bind require to babel to support ES6 by default.

@@ -1,6 +1,6 @@
 import debug from "debug"
 import { flatten } from "./flatten"
-const _ = debug("fly:util:filter")
+const _ = debug("fly:filter")
 /**
   Filter fly-* plugins from a package dependencies.
   @param {Object} package.json

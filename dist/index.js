@@ -35,7 +35,3 @@ _defaults(exports, _interopExportWildcard(_flatten, _defaults));
 var _logging = require("./logging");
 
 _defaults(exports, _interopExportWildcard(_logging, _defaults));
-
-var _notifyUpdates = require("./notifyUpdates");
-
-_defaults(exports, _interopExportWildcard(_notifyUpdates, _defaults));

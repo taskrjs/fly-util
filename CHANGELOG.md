@@ -6,6 +6,7 @@
 
 # Changelog
 
++ [v4.1.0](#v410)
 + [v4.0.1](#v401)
 + [v4.0.0](#v400)
 + [v3.9.1](#v391)
@@ -22,6 +23,12 @@
 + [v3.0.0](#v300)
 + [v2.0.0](#v200)
 + [v1.0.0](#v100)
+
+## v4.1.0
+
++ Stamp wraps [`debug`](https://github.com/visionmedia/debug) if `process.env.DEBUG` is set.
+
++ Remove `update-notifier` and favor importing directly in Fly.
 
 ## v4.0.1
 

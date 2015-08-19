@@ -26,7 +26,7 @@ var _path = require("path");
 
 var _interpret = require("interpret");
 
-var _ = (0, _debug2["default"])("fly:util:find");
+var _ = (0, _debug2["default"])("fly:find");
 /**
   Find a valid Flyfile from a given path.
   @param {String} file or path to the Flyfile

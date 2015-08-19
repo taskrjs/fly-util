@@ -15,7 +15,7 @@ var _debug2 = _interopRequireDefault(_debug);
 
 var _flatten = require("./flatten");
 
-var _ = (0, _debug2["default"])("fly:util:filter");
+var _ = (0, _debug2["default"])("fly:filter");
 /**
   Filter fly-* plugins from a package dependencies.
   @param {Object} package.json

@@ -13,7 +13,7 @@ var _debug2 = _interopRequireDefault(_debug);
 
 var _interpret = require("interpret");
 
-var _ = (0, _debug2["default"])("fly:util:bind");
+var _ = (0, _debug2["default"])("fly:bind");
 /**
   Register bind to node require to support on the fly compilation.
   Bind require to babel to support ES6 by default.

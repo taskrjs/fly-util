@@ -16,7 +16,7 @@ test("fly utilities ✈", (t) => {
   t.ok(util !== undefined, "it's real")
   Array.prototype.concat([
     "bind", "defer", "expand", "filter", "find", "flatten",
-    "notifyUpdates", "log", "error", "alert", "stamp", "trace"
+    "log", "error", "alert", "stamp", "trace"
   ]).forEach((prop) => t.ok(util[prop] !== undefined, `${prop} is defined`))
   t.end()
 })

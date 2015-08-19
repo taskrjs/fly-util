@@ -5,10 +5,10 @@ var _interopRequireDefault = require("babel-runtime/helpers/interop-require-defa
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.stamp = stamp;
 exports.log = log;
 exports.error = error;
 exports.alert = alert;
-exports.stamp = stamp;
 exports.trace = trace;
 
 var _clor = require("clor");
@@ -21,41 +21,13 @@ var _dateformat2 = _interopRequireDefault(_dateformat);
 
 var _prettyjson = require("prettyjson");
 
-/**
-  Log utilities.
-*/
-
 var _prettyjson2 = _interopRequireDefault(_prettyjson);
 
-function log() {
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
+var _debug = require("debug");
 
-  stamp.apply({ method: "log", color: "magenta" }, args);
-  return this;
-}
+var _debug2 = _interopRequireDefault(_debug);
 
-function error() {
-  for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    args[_key2] = arguments[_key2];
-  }
-
-  stamp.apply({ method: "error", color: "red" }, args);
-  return this;
-}
-
-function alert() {
-  for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-    args[_key3] = arguments[_key3];
-  }
-
-  if (process.env.VERBOSE) stamp.apply({
-    custom: "" + _clor2["default"].yellow.bold("%s"),
-    method: "log",
-    color: "yellow" }, args);
-  return this;
-}
+var _ = (0, _debug2["default"])("fly:log");
 
 /**
   Apply args to console[method] and add a date stamp.
@@ -66,14 +38,50 @@ function alert() {
 */
 
 function stamp() {
-  var date = (0, _dateformat2["default"])(new Date(), "HH:MM:ss");
-  process.stdout.write("[" + _clor2["default"][this.color](process.env.DEBUG ? "DEBUG" : date) + "] ");
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
 
+  if (process.env.DEBUG) {
+    _.apply(_, args);
+  } else {
+    process.stdout.write("[" + _clor2["default"][this.color]((0, _dateformat2["default"])(new Date(), "HH:MM:ss")) + "] ");
+    console[this.method].apply(console, this.custom ? [this.custom].concat(args) : args);
+  }
+}
+
+/**
+  Log utilities.
+*/
+
+function log() {
+  for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    args[_key2] = arguments[_key2];
+  }
+
+  stamp.apply({ method: "log", color: "magenta" }, args);
+  return this;
+}
+
+function error() {
+  for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+    args[_key3] = arguments[_key3];
+  }
+
+  stamp.apply({ method: "error", color: "red" }, args);
+  return this;
+}
+
+function alert() {
   for (var _len4 = arguments.length, args = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
     args[_key4] = arguments[_key4];
   }
 
-  console[this.method].apply(console, this.custom ? [this.custom].concat(args) : args);
+  if (process.env.VERBOSE) stamp.apply({
+    custom: "" + _clor2["default"].yellow.bold("%s"),
+    method: "log",
+    color: "yellow" }, args);
+  return this;
 }
 
 /**
