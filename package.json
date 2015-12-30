@@ -8,8 +8,6 @@
     "LICENSE"
   ],
   "dependencies": {
-    "babel-core": "^5.6.15",
-    "babel-runtime": "^5.4.7",
     "clor": "^1.0.0",
     "dateformat": "^1.0.11",
     "debug": "^2.2.0",
@@ -20,7 +18,7 @@
     "rimraf": "^2.4.0"
   },
   "devDependencies": {
-    "babel": "^5.6.14",
+    "babel-cli": "^6.3.0",
     "babel-eslint": "^4.1.4",
     "co": "^4.5.4",
     "coffee-script": "^1.10.0",
