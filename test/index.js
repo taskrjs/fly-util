@@ -63,12 +63,12 @@ test("util.find (path) ✈", (t) => {
 })
 
 test("util.bind (module) ✈", (t) => {
-  const coffee = require(util.bind(
-    join(process.cwd(), `${fixtures}/sample.coffee`)))
-  t.equal(coffee.getSecret(), 42, "binds to coffee-script")
+  const cwd = process.cwd()
 
-  const es6 = require(util.bind(
-    join(process.cwd(), `${fixtures}/sample.js`)))
+  const coffee = require(util.bind(join(cwd, `${fixtures}/sample.coffee`)))
+  const es6 = require(util.bind(join(cwd, `${fixtures}/sample.js`)))
+
+  t.equal(coffee.getSecret(), 42, "binds to coffee-script")
   t.equal(es6.getSecret(), 42, "binds to es6")
 
   t.end()
