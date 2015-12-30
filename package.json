@@ -21,9 +21,9 @@
   },
   "devDependencies": {
     "babel": "^5.6.14",
-    "babel-eslint": "^3.1.9",
+    "babel-eslint": "^4.1.4",
     "co": "^4.5.4",
-    "coffee-script": "^1.9.3",
+    "coffee-script": "^1.10.0",
     "eslint": "^0.21.2",
     "tap-spec": "^4.0.2",
     "tape": "^4.0.0"
