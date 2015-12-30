@@ -29,11 +29,10 @@
     "tape": "^4.0.0"
   },
   "scripts": {
-    "setup": "npm i && npm run test",
-    "test": "npm run build && npm run lint && npm run harmony-test | tspec",
+    "setup": "npm i && npm run build && npm run test",
+    "test": "npm run lint && babel-node ./node_modules/tape/bin/tape test/*.js | tspec",
     "build": "babel --optional runtime src/ -d ./dist",
     "lint": "eslint src/",
-    "harmony-test": "node --harmony --harmony_arrow_functions ./node_modules/tape/bin/tape test/*.js",
     "deploy": "npm run test && git push origin master && npm publish",
     "prepublish": "npm run build"
   },
