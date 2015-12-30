@@ -8,6 +8,7 @@
     "LICENSE"
   ],
   "dependencies": {
+    "babel-polyfill": "^6.3.0",
     "clor": "^1.0.0",
     "dateformat": "^1.0.11",
     "debug": "^2.2.0",
