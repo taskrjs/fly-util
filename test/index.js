@@ -4,6 +4,8 @@ const util = require("../dist")
 const join = require("path").join
 const basename = require("path").basename
 
+const fixtures = "test/fixtures"
+
 function asyncFunc (value, handler) {
   setTimeout(() => (handler(undefined, value)), 100)
 }
@@ -42,7 +44,7 @@ test("util.flatten (array) ✈", (t) => {
 test("util.expand (pattern, options) ✈", (t) => {
   t.plan(5)
   const expected = ["a.js", "b.js", "index.js",
-  "Flyfile.js", "flyfile.js", "sample.babel.js"]
+  "Flyfile.js", "flyfile.js", "sample.js"]
   util.expand("./test/**/*.js").then((files) => {
     files.map((file) => basename(file)).forEach((file) => {
       t.ok(!!~expected.indexOf(file), `expands and handles globs: ${file}`)
@@ -53,21 +55,21 @@ test("util.expand (pattern, options) ✈", (t) => {
 test("util.find (path) ✈", (t) => {
   t.plan(2)
   co(function* () {
-    t.equal(basename(yield util.find("test/fixtures/Flyfile.js")),
+    t.equal(basename(yield util.find(`${fixtures}/Flyfile.js`)),
       "Flyfile.js", "find Flyifle given a file")
-    t.equal(basename(yield util.find("test/fixtures")),
+    t.equal(basename(yield util.find(fixtures)),
       "Flyfile.js", "find Flyifle given a path")
   })
 })
 
 test("util.bind (module) ✈", (t) => {
   const coffee = require(util.bind(
-    join(process.cwd(), "test/fixtures/sample.coffee")))
+    join(process.cwd(), `${fixtures}/sample.coffee`)))
   t.equal(coffee.getSecret(), 42, "binds to coffee-script")
 
-  const babel = require(util.bind(
-    join(process.cwd(), "test/fixtures/sample.babel.js")))
-  t.equal(babel.getSecret(), 42, "binds to babel")
+  const es6 = require(util.bind(
+    join(process.cwd(), `${fixtures}/sample.js`)))
+  t.equal(es6.getSecret(), 42, "binds to es6")
 
   t.end()
 })
