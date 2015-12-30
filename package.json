@@ -39,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flyjs/fly-util.git"
+    "url": "git+https://github.com/bucaran/fly-util.git"
   },
   "keywords": [
     "fly",
@@ -48,11 +48,11 @@
   "author": "Jorge Bucaran",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/flyjs/fly-util/issues"
+    "url": "https://github.com/bucaran/fly-util/issues"
   },
   "engines": {
     "iojs": ">= 1.0.0",
     "node": ">= 0.12.0"
   },
-  "homepage": "https://github.com/flyjs/fly-util"
+  "homepage": "https://github.com/bucaran/fly-util"
 }
