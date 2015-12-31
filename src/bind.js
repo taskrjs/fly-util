@@ -8,10 +8,10 @@ const _ = debug("fly:bind")
   @param {Options} options to function modules, e.g, babel
   @return {String} path
 */
-export function bind (path, options) {
+export function bind (path, options = {}) {
   const module = reduce(js[`.${(path || "").split(".").slice(1).join(".")}`]
   || js[".babel.js"])
-  if (module instanceof Function) module(options || { stage: 0 })
+  if (module instanceof Function) module(options)
   return path
 }
 /**
