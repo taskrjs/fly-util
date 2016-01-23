@@ -1,13 +1,11 @@
-import glob from "glob"
+import globby from "globby"
+
 /**
-  Promisify glob.
-  @param {String} pattern to match
-  @param {Object} options
+  Globby wrapper
+  @param {String || Array}  pattern(s) to match
+  @param {Object}           options
   @return {Promise}
 */
 export function expand (pattern, options) {
-  return new Promise(function (resolve, reject) {
-    glob(pattern, options, (er, files) =>
-      er ? reject(er) : resolve(files))
-  })
+  return globby(pattern, options)
 }
