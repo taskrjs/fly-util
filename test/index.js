@@ -50,6 +50,20 @@ test("util.expand (pattern, options) ✈", (t) => {
   })
 })
 
+test("util.expand (negated glob) ✈", (t) => {
+  t.plan(1)
+
+  const glob1 = ["./test/**/*.js"]
+  const glob2 = glob1.concat("!./test/fixtures/a.js")
+
+  util.expand(glob1).then(all => {
+    const count = all.length - 1
+    util.expand(glob2).then(files => {
+      t.ok(files.length === count, "handle glob file exclusions")
+    })
+  })
+})
+
 test("util.find (path) ✈", (t) => {
   t.plan(2)
   co(function* () {
