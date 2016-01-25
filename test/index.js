@@ -17,7 +17,7 @@ test("fly utilities ✈", (t) => {
   Array.prototype.concat([
     "bind", "defer", "expand", "filter", "find", "flatten",
     "log", "error", "alert", "stamp", "trace"
-  ]).forEach((prop) => t.ok(util[prop] !== undefined, `${prop} is defined`))
+  ]).forEach((prop) => t.ok(util[prop] !== undefined, prop +' is defined'))
   t.end()
 })
 
@@ -45,7 +45,7 @@ test("util.expand (pattern, options) ✈", (t) => {
   "Flyfile.js", "flyfile.js", "sample.babel.js"]
   util.expand("./test/**/*.js").then((files) => {
     files.map((file) => basename(file)).forEach((file) => {
-      t.ok(!!~expected.indexOf(file), `expands and handles globs: ${file}`)
+      t.ok(!!~expected.indexOf(file), 'expands and handles globs: ' + file)
     })
   })
 })
