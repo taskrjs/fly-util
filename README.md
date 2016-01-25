@@ -8,7 +8,7 @@
 
 
 <p align="center">
-  <a href="http://github.com/flyjs/fly-util">
+  <a href="http://github.com/bucaran/fly-util">
     <img width=180px  src="https://cloud.githubusercontent.com/assets/8317250/8733685/0be81080-2c40-11e5-98d2-c634f076ccd7.png">
   </a>
 </p>
@@ -145,13 +145,13 @@ Bind to node's require based in the file extension of your Flyfile.
 :heart:
 
 [author]: http://about.bucaran.me
-[contributors]: https://github.com/flyjs/fly-util/graphs/contributors
-[fly]: https://www.github.com/flyjs/fly
-[fly-util]: https://www.github.com/flyjs/fly-util
+[contributors]: https://github.com/bucaran/fly-util/graphs/contributors
+[fly]: https://www.github.com/bucaran/fly
+[fly-util]: https://www.github.com/bucaran/fly-util
 [fly-badge]: https://img.shields.io/badge/fly-JS-05B3E1.svg?style=flat-square
 [mit-badge]: https://img.shields.io/badge/license-MIT-444444.svg?style=flat-square
 [npm-pkg-link]: https://www.npmjs.org/package/fly-util
 [npm-ver-link]: https://img.shields.io/npm/v/fly-util.svg?style=flat-square
 [dl-badge]: http://img.shields.io/npm/dm/fly-util.svg?style=flat-square
-[travis-logo]: http://img.shields.io/travis/flyjs/fly-util.svg?style=flat-square
-[travis]: https://travis-ci.org/flyjs/fly-util
+[travis-logo]: http://img.shields.io/travis/bucaran/fly-util.svg?style=flat-square
+[travis]: https://travis-ci.org/bucaran/fly-util
